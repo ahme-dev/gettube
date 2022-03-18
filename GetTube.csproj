@@ -5,6 +5,8 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
+    <ApplicationIcon>GetTube.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +16,10 @@
     <None Remove="res2.png" />
     <None Remove="res3.png" />
     <None Remove="res4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="GetTube.ico" />
   </ItemGroup>
 
   <ItemGroup>
