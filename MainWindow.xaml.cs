@@ -55,14 +55,12 @@ namespace GetTube
             // if video not found 
             if (video == null)
             {
-                varStatus.Content = "Video info not found...";
+                varStatus.Content = "Video info not found!";
             }
             // otherwise if found
             else
             {
-                // say info was found and make section appear
-                varVidInfo.Opacity = 0.9;
-                varStatus.Content = "Video info found. Waiting for quality selection...";
+                varStatus.Content = "Video info found!";
 
                 // set the values for preview from url
                 varVidTitle.Text = video.Title;
@@ -71,29 +69,45 @@ namespace GetTube
                 
                 // get a list of streams
                 streamManifest = await youtube.Videos.Streams.GetManifestAsync(varVideoURL.Text);
+
+                // make buttons clickable
+                videoBtn.Click += DownloadVideo;
+                audioBtn.Click += DownloadAudio;
+
+                // say info was found and make section appear
+                varVidInfo.Opacity = 0.9;
+                varStatus.Content = "Waiting for quality selection...";
             }
         }
 
-        // Download Video Quality Options
-
-        private void DownloadVideoLow(object sender, RoutedEventArgs e)
-        {
-        }
+        // Download Options
 
         async private void DownloadAudio(object sender, RoutedEventArgs e)
         {
+            // Get audio stream
             var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+
+            // Stop button from working
+            varStatus.Content = "Now downloading...";
+            audioBtn.Click -= DownloadAudio;
+
+            // Download and notify after
             await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
+            varStatus.Content = "Audio was downloaded!";
         }
 
-        private void DownloadVideoMedium(object sender, RoutedEventArgs e)
+        async private void DownloadVideo(object sender, RoutedEventArgs e)
         {
-        }
-
-        async private void DownloadVideoHigh(object sender, RoutedEventArgs e)
-        {
+            // Get mixed stream 
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+
+            // Stop button from working
+            varStatus.Content = "Now downloading...";
+            videoBtn.Click -= DownloadVideo;
+
+            // Download and notify after
             await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
+            varStatus.Content = "Video was downloaded!";
         }
 
         private void ResetVideoInfoUI()
@@ -102,6 +116,10 @@ namespace GetTube
                 varVidTitle.Text = "Title";
                 varVidAuthor.Text = "Author";
                 varVidDuration.Text = "Duration";
+
+                // make buttons not clickable
+                videoBtn.Click -= DownloadVideo;
+                audioBtn.Click -= DownloadAudio;
         }
     }
 }

@@ -87,29 +87,17 @@
                             </LinearGradientBrush>
                         </DockPanel.Background>
 
-                        <Button Click="DownloadAudio" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
+                        <Button x:Name="audioBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
                             <Button.Background>
                                 <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                             </Button.Background>
-                            MP3
+                            Download Audio
                         </Button>
-                        <Button Click="DownloadVideoLow" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
+                        <Button x:Name="videoBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
                             <Button.Background>
                                 <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                             </Button.Background>
-                            MP4-480p
-                        </Button>
-                        <Button Click="DownloadVideoMedium" Padding="10,0" FontWeight="Heavy"  BorderThickness="0" HorizontalContentAlignment="Center">
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                            MP4-720p
-                        </Button>
-                        <Button Click="DownloadVideoHigh" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                            MP4-1080p
+                            Download Video (Highest Quality)
                         </Button>
                     </DockPanel>
                 </DockPanel>
@@ -136,8 +124,6 @@
                        VerticalAlignment="Center"
                        />
             </Button>
-
-            <ProgressBar x:Name="varProgress" Grid.Column="1" Margin="5" HorizontalAlignment="Center"/>
 
             <Button Cursor="Hand" Grid.Column="2" Click="EventFlaticon" BorderThickness="0">
                 <Button.Background>
