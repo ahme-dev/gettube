@@ -5,59 +5,143 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetTube"
         mc:Ignorable="d"
-        Title="GetTube (youtube-dl gui)" Height="500" Width="400">
+        Title="GetTube (youtube-dl gui)"
+        Height="450" Width="400"
+        ResizeMode="CanMinimize"
+        >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
-        <Label HorizontalAlignment="Center"
-               Margin="12"
-               FontFamily="Fira Sans"
-               FontSize="20"
-               Content="getTube"
-               />
+        <Image HorizontalAlignment="Center"
+               Height="75"
+               Margin="0,20"
+               Source="/GetTube.png"/>
 
 
         <!-- CONTENT -->
-        <Grid Grid.Row="1" Background="LightSalmon"
-              Margin="20"
-              MaxWidth="600"
-              MaxHeight="500"
-              >
+        <Grid Grid.Row="1" 
+              Margin="20,0"
+              MaxWidth="600">
+
+            <VirtualizingStackPanel Margin="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             VerticalContentAlignment="Center"
+                             Padding="10,3"
+                             Margin="
+                             2,0"
+                             IsUndoEnabled="False"
+                             FontSize="16" BorderThickness="0,0,0,2" BorderBrush="#FFF5A0A0" />
+
+                    <Button Grid.Column="1"
+                            Width="40"
+                            Cursor="Hand"
+                            Margin="2,0"
+                            Padding="5" Background="#00DDDDDD" BorderThickness="0,0,0,0">
+                        <Image Source="/res3.png"/>
+                    </Button>
+                </Grid>
+
+                <Label x:Name="varStatus" FontFamily="Fira Sans" HorizontalAlignment="Center" Margin="0,20">Waiting for URL...</Label>
+
+                <DockPanel x:Name="varVideoInfo" Margin="10,0" Opacity="0.2">
+                    <DockPanel Margin="0,5" DockPanel.Dock="Top">
+                        <DockPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFB9E9D9"/>
+                                <GradientStop Color="#FFBAD7BE" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DockPanel.Background>
+                        <Image Width="80" DockPanel.Dock="Left" Source="/res4.png" Margin="4"/>
+                        <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
+                            <TextBlock DockPanel.Dock="Top" FontWeight="Bold" FontSize="16">Title</TextBlock>
+                            <TextBlock DockPanel.Dock="Bottom">Description</TextBlock>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel Margin="0,5" DockPanel.Dock="Bottom">
+                        <DockPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFB9E9D9"/>
+                                <GradientStop Color="#FFBAD7BE" Offset="1"/>
+                            </LinearGradientBrush>
+                        </DockPanel.Background>
+                        <Button Padding="10,2" BorderThickness="0" HorizontalContentAlignment="Center">
+                            <Button.Background>
+                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                            </Button.Background>
+                            MP3
+                        </Button>
+                        <Button Padding="10,2" BorderThickness="0" HorizontalContentAlignment="Center">
+                            <Button.Background>
+                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                            </Button.Background>
+                            MP4-480p
+                        </Button>
+                        <Button Padding="10,2" BorderThickness="0" HorizontalContentAlignment="Center">
+                            <Button.Background>
+                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                            </Button.Background>
+                            MP4-720p
+                        </Button>
+                        <Button Padding="10,2" BorderThickness="0" HorizontalContentAlignment="Center">
+                            <Button.Background>
+                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                            </Button.Background>
+                            MP4-1080p
+                        </Button>
+                    </DockPanel>
+                </DockPanel>
+            </VirtualizingStackPanel>
 
         </Grid>
 
         <!-- FOOTER -->
-        <Grid Grid.Row="2" Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}">
+        <Grid Grid.Row="2" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" BorderThickness="0">
+            <Button Cursor="Hand" Grid.Column="0" BorderThickness="0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
-                <Image Width="20"
-                       Margin="5,1"
+                <Image Margin="5,1"
                        Source="/res1.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />
             </Button>
 
-            <Button Grid.Column="2" BorderThickness="0">
+            <Button Cursor="Hand" Grid.Column="2" BorderThickness="0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
-                <Image Width="20"
-                       Margin="5,1"
+                <Image Margin="5"
+                       Source="/res1.1.png" Stretch="Fill"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       />
+            </Button>
+
+            <Button Cursor="Hand" Grid.Column="3" BorderThickness="0">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                </Button.Background>
+                <Image Margin="5,1"
                        Source="/res2.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
