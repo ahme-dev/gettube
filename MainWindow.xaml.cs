@@ -13,8 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NYoutubeDL;
-using NYoutubeDL.Models;
+using YoutubeExplode;
+using YoutubeExplode.Videos.Streams;
 
 namespace GetTube
 {
@@ -23,14 +23,12 @@ namespace GetTube
     /// </summary>
     public partial class MainWindow : Window
     {
-        private YoutubeDLP youtubeDl = new();
-        private DownloadInfo? videoInfo;
+        private YoutubeClient youtube = new();
+        private StreamManifest? streamManifest;
 
         public MainWindow()
         {
             InitializeComponent();
-            youtubeDl.YoutubeDlPath = "C:/Users/da/Downloads/ytdl.exe";
-            youtubeDl.Options.GeneralOptions.ExtractorDescriptions = true;
         }
 
         private void EventFlaticon(object sender, RoutedEventArgs e)
@@ -43,63 +41,67 @@ namespace GetTube
             Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://github.com/ahmadkabdullah/GetTube"}") { CreateNoWindow = true });
         }
 
+        // Get the video
+
         async private void EventGetVideo(object sender, RoutedEventArgs e)
         {
-            // reset the text
-            videoInfo = null;
-            varVidInfo.Opacity = 0.2;
-            varStatus.Content = "Fetching video info...";
-            varVidTitle.Text = "Title";
+            // delete the info of the previous video
+            ResetVideoInfoUI();
 
-            // get the link
-            youtubeDl.VideoUrl = varVideoURL.Text;
+            // say fetching and do fetch
+            varStatus.Content = "Fetching information...";
+            var video = await youtube.Videos.GetAsync(varVideoURL.Text);
 
-            // get info using the link
-            videoInfo = await youtubeDl.GetDownloadInfoAsync();
-
-            // if info was not found
-            if (videoInfo == null)
+            // if video not found 
+            if (video == null)
             {
-                varStatus.Content = "Could not retrieve video info...";
-            } 
-            // otherwise when info was found
+                varStatus.Content = "Video info not found...";
+            }
+            // otherwise if found
             else
             {
+                // say info was found and make section appear
                 varVidInfo.Opacity = 0.9;
-                varVidTitle.Text = videoInfo.Title;
+                varStatus.Content = "Video info found. Waiting for quality selection...";
+
+                // set the values for preview from url
+                varVidTitle.Text = video.Title;
+                varVidAuthor.Text = video.Author.Title;
+                varVidDuration.Text = video.Duration.ToString();
+                
+                // get a list of streams
+                streamManifest = await youtube.Videos.Streams.GetManifestAsync(varVideoURL.Text);
             }
         }
+
+        // Download Video Quality Options
 
         private void DownloadVideoLow(object sender, RoutedEventArgs e)
         {
-            if (videoInfo == null)
-            {
-                return;
-            }
         }
 
-        private void DownloadAudio(object sender, RoutedEventArgs e)
+        async private void DownloadAudio(object sender, RoutedEventArgs e)
         {
-            if (videoInfo == null)
-            {
-                return;
-            }
+            var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
         }
 
         private void DownloadVideoMedium(object sender, RoutedEventArgs e)
         {
-            if (videoInfo == null)
-            {
-                return;
-            }
         }
 
-        private void DownloadVideoHigh(object sender, RoutedEventArgs e)
+        async private void DownloadVideoHigh(object sender, RoutedEventArgs e)
         {
-            if (videoInfo == null)
-            {
-                return;
-            }
+            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
+        }
+
+        private void ResetVideoInfoUI()
+        {
+                varVidInfo.Opacity = 0.2;
+                varVidTitle.Text = "Title";
+                varVidAuthor.Text = "Author";
+                varVidDuration.Text = "Duration";
         }
     }
 }

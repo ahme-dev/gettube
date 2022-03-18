@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetTube"
         mc:Ignorable="d"
-        Title="GetTube (youtube-dl gui)"
+        Title="GetTube (YouTube Video Downloader)"
         MinHeight="520" MinWidth="480"
         Height="520" Width="480"
         >
@@ -19,8 +19,8 @@
 
         <!-- HEADER -->
         <Image HorizontalAlignment="Center"
-               Height="75"
-               Margin="0,25,0,5"
+               Height="120"
+               Margin="0,25,0,0"
                Source="/GetTube.png"/>
 
 
@@ -67,21 +67,23 @@
                     <DockPanel Margin="0,5" DockPanel.Dock="Top">
                         <DockPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB9E9D9"/>
-                                <GradientStop Color="#FFBAD7BE" Offset="1"/>
+                                <GradientStop Color="#FFD0DDED"/>
+                                <GradientStop Color="#FFCFE4D2" Offset="1"/>
                             </LinearGradientBrush>
                         </DockPanel.Background>
                         <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/res4.png" Margin="4"/>
                         <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
                             <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="Title" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="Author" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="varVidDuration" DockPanel.Dock="Right" Text="Duration" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
                         </DockPanel>
                     </DockPanel>
 
                     <DockPanel Margin="0,5" Height="30" DockPanel.Dock="Bottom">
                         <DockPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB9E9D9"/>
-                                <GradientStop Color="#FFBAD7BE" Offset="1"/>
+                                <GradientStop Color="#FFD0DDED"/>
+                                <GradientStop Color="#FFCFE4D2" Offset="1"/>
                             </LinearGradientBrush>
                         </DockPanel.Background>
 
@@ -135,7 +137,7 @@
                        />
             </Button>
 
-            <ProgressBar Grid.Column="1" Margin="5" HorizontalAlignment="Center" Width="200"/>
+            <ProgressBar x:Name="varProgress" Grid.Column="1" Margin="5" HorizontalAlignment="Center"/>
 
             <Button Cursor="Hand" Grid.Column="2" Click="EventFlaticon" BorderThickness="0">
                 <Button.Background>
