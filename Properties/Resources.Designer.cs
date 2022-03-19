@@ -115,7 +115,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to credits to flaticon.com for the icons!.
+        ///   Looks up a localized string similar to credits to the icon creators on flaticon.com.
         /// </summary>
         internal static string Flaticon {
             get {

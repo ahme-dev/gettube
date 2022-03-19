@@ -58,7 +58,7 @@ namespace GetTube
         }
 
         // Get the video
-
+        
         async private void EventGetVideo(object sender, RoutedEventArgs e)
         {
             // delete the info of the previous video
