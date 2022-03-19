@@ -28,6 +28,7 @@ namespace GetTube
     {
         private YoutubeClient youtube = new();
         private StreamManifest? streamManifest;
+        private string SelectedTheme = "Light";
         private string SelectedLanguage = "en-US";
 
         public MainWindow()
@@ -128,13 +129,14 @@ namespace GetTube
 
         private void EventColor(object sender, RoutedEventArgs e)
         {
+            SwitchTheme();
         }
 
         // to be run after a new link is given
         private void ResetVideoInfoUI()
         {
             varVidInfo.Opacity = 0.2;
-            varVidTitle.Text = "Title";
+            varVidTitle.Text = "{lex:}";
             varVidAuthor.Text = "Author";
             varVidDuration.Text = "Duration";
 
@@ -154,25 +156,61 @@ namespace GetTube
                         varVidTitle.FontFamily =
                         videoBtn.FontFamily =
                         audioBtn.FontFamily = 
+                        secStatus.FontFamily =
                         varStatus.FontFamily = new FontFamily("NRT BOLD");
                     SelectedLanguage = "ar-IQ";
-                    secStatus.Content = "Changed language to Kurdish!";
+                    secStatus.Content = "سڵاو لە کوردزمان";
                     break;
 
+                default:
                 case "ar-IQ":
                     varVidAuthor.FontFamily =
                         varVidDuration.FontFamily =
                         varVidTitle.FontFamily =
                         videoBtn.FontFamily =
                         audioBtn.FontFamily =
+                        secStatus.FontFamily =
                         varStatus.FontFamily = new FontFamily("Fira Sans");
                     SelectedLanguage = "en-US";
-                    secStatus.Content = "Changed language to English!";
+                    secStatus.Content = "Language is now English!";
                     break;
             }
 
             // switch to set language
             LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+        }
+
+        private void SwitchTheme()
+        {
+            // used colors
+            Brush bgCol, fgCol, fgColB;
+
+            // switch theme
+            switch (SelectedTheme)
+            {
+                default:
+                case "Dark":
+                    // light theme colors
+                    bgCol = Brushes.WhiteSmoke;
+                    fgCol = Brushes.Black;
+                    fgColB = Brushes.Gray;
+                    SelectedTheme = "Light";
+                    break;
+                case "Light":
+                    // dark theme colors
+                    bgCol = new SolidColorBrush(Color.FromArgb(0xFF, 30, 30, 30));
+                    fgCol = Brushes.WhiteSmoke;
+                    fgColB = new SolidColorBrush(Color.FromArgb(0xFF, 140, 140, 140));
+                    SelectedTheme = "Dark";
+                    break;
+            }
+
+            // finally set all the colors
+            varVideoURL.Background = bgCol;
+            varVideoURL.Foreground = fgCol;
+            container.Background = bgCol;
+            varStatus.Foreground = fgCol;
+            secStatus.Foreground = fgColB;
         }
     }
 }
