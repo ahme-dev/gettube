@@ -28,12 +28,16 @@ namespace GetTube
     {
         private YoutubeClient youtube = new();
         private StreamManifest? streamManifest;
-        private string SelectedTheme = "Light";
-        private string SelectedLanguage = "en-US";
+        private string SelectedTheme;
+        private string SelectedLanguage;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            // set theme and language
+            SwitchUILang();
+            SwitchUITheme();
 
             // retrieve configuration
 
@@ -125,11 +129,32 @@ namespace GetTube
         private void EventLang(object sender, RoutedEventArgs e)
         {
             SwitchUILang();
+
+            switch (SelectedLanguage)
+            {
+                case "en-US":
+                    secStatus.Content = "Language is now English!";
+                    break;
+                case "ar-IQ":
+                    secStatus.Content = "سڵاو لە کوردزمان";
+                    break;
+            }
         }
 
         private void EventColor(object sender, RoutedEventArgs e)
         {
-            SwitchTheme();
+            SwitchUITheme();
+
+            // switch theme
+            switch (SelectedTheme)
+            {
+                case "Dark":
+                    secStatus.Content = "It's getting dark out here!";
+                    break;
+                case "Light":
+                    secStatus.Content = "It's bright again";
+                    break;
+            }
         }
 
         // to be run after a new link is given
@@ -159,8 +184,7 @@ namespace GetTube
                         secStatus.FontFamily =
                         varStatus.FontFamily = new FontFamily("NRT BOLD");
                     SelectedLanguage = "ar-IQ";
-                    secStatus.Content = "سڵاو لە کوردزمان";
-                    break;
+                        break;
 
                 default:
                 case "ar-IQ":
@@ -172,15 +196,14 @@ namespace GetTube
                         secStatus.FontFamily =
                         varStatus.FontFamily = new FontFamily("Fira Sans");
                     SelectedLanguage = "en-US";
-                    secStatus.Content = "Language is now English!";
-                    break;
-            }
+                        break;
+                }
 
-            // switch to set language
-            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+                // switch to set language
+                LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
         }
 
-        private void SwitchTheme()
+        private void SwitchUITheme()
         {
             // used colors
             Brush bgCol, fgCol, fgColB;
