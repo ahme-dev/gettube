@@ -161,7 +161,7 @@ namespace GetTube
         private void ResetVideoInfoUI()
         {
             varVidInfo.Opacity = 0.2;
-            varVidTitle.Text = "{lex:}";
+            varVidTitle.Text = "Title";
             varVidAuthor.Text = "Author";
             varVidDuration.Text = "Duration";
 
