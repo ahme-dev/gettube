@@ -13,14 +13,14 @@
         mc:Ignorable="d"
         Title="GetTube (YouTube Video Downloader)"
         MinHeight="540" MinWidth="480"
-        Height="540" Width="480"
+        Height="550" Width="480"
         >
 
     <Grid x:Name="container">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
 
         <!-- HEADER -->
@@ -32,11 +32,11 @@
 
         <!-- CONTENT -->
         <Grid Grid.Row="1" 
-              Margin="20,0"
+              Margin="30,0"
               VerticalAlignment="Center"
               MaxWidth="600">
 
-            <VirtualizingStackPanel Margin="10">
+            <VirtualizingStackPanel>
 
                 <!-- TEXTBOX SECTION -->
 
@@ -113,7 +113,7 @@
         </Grid>
 
         <!-- FOOTER -->
-        <Grid Grid.Row="2" Margin="2">
+        <Grid Grid.Row="2" Margin="7">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
