@@ -4,6 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetTube"
+
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en"
+        lex:ResxLocalizationProvider.DefaultAssembly="GetTube"
+        lex:ResxLocalizationProvider.DefaultDictionary="Resources"
+
         mc:Ignorable="d"
         Title="GetTube (YouTube Video Downloader)"
         MinHeight="520" MinWidth="480"
@@ -60,7 +66,8 @@
                     </Button>
                 </Grid>
 
-                <Label x:Name="varStatus" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30">Waiting for URL...</Label>
+                <!-- STATUS SECTION -->
+                <Label x:Name="varStatus" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc Waiting}" />
 
                 <!-- VIDEO SECTION -->
                 <DockPanel x:Name="varVidInfo" Margin="10,0" Opacity="0.2">
@@ -109,12 +116,13 @@
         <Grid Grid.Row="2" Margin="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Button Cursor="Hand" Grid.Column="0" BorderThickness="0">
+            <Button Cursor="Hand" Grid.Column="0" BorderThickness="0" Click="EventColor">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
@@ -125,7 +133,18 @@
                        />
             </Button>
 
-            <Button Cursor="Hand" Grid.Column="2" Click="EventFlaticon" BorderThickness="0">
+            <Button Cursor="Hand" Grid.Column="1" BorderThickness="0" Click="EventLang">
+                <Button.Background>
+                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                </Button.Background>
+                <Image Margin="5,1"
+                       Source="/res5.png" Stretch="Fill"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       />
+            </Button>
+
+            <Button Cursor="Hand" Grid.Column="3" Click="EventFlaticon" BorderThickness="0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
@@ -136,7 +155,7 @@
                        />
             </Button>
 
-            <Button Cursor="Hand" Grid.Column="3" Click="EventSource" BorderThickness="0">
+            <Button Cursor="Hand" Grid.Column="4" Click="EventSource" BorderThickness="0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>

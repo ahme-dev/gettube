@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
 using WPFLocalizeExtension;
+using WPFLocalizeExtension.Engine;
+using System.Globalization;
 
 namespace GetTube
 {
@@ -26,10 +28,17 @@ namespace GetTube
     {
         private YoutubeClient youtube = new();
         private StreamManifest? streamManifest;
+        private string SelectedLanguage = "en-US";
 
         public MainWindow()
         {
             InitializeComponent();
+
+            // retrieve configuration
+
+            // set language at start up
+            LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
+            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
         }
 
         private void EventFlaticon(object sender, RoutedEventArgs e)
@@ -121,6 +130,16 @@ namespace GetTube
                 // make buttons not clickable
                 videoBtn.Click -= DownloadVideo;
                 audioBtn.Click -= DownloadAudio;
+        }
+
+        private void EventLang(object sender, RoutedEventArgs e)
+        {
+            LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
+            LocalizeDictionary.Instance.Culture = new CultureInfo("ar-IQ");
+        }
+        private void EventColor(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

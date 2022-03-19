@@ -17,6 +17,7 @@
     <None Remove="res2.png" />
     <None Remove="res3.png" />
     <None Remove="res4.png" />
+    <None Remove="res5.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,31 @@
     <Resource Include="res2.png" />
     <Resource Include="res3.png" />
     <Resource Include="res4.png" />
+    <Resource Include="res5.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Properties\Resources.ar-IQ.Designer.cs">
+      <DependentUpon>Resources.ar-IQ.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.ar-IQ.resx">
+      <LastGenOutput>Resources.ar-IQ.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
