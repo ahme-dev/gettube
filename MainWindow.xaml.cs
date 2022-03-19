@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using YoutubeExplode;
 using YoutubeExplode.Videos.Streams;
+using WPFLocalizeExtension;
 
 namespace GetTube
 {

@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
     <ApplicationIcon>GetTube.ico</ApplicationIcon>
+    <DebugType>none</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="WPFLocalizeExtension" Version="3.9.4" />
     <PackageReference Include="YoutubeExplode" Version="6.1.0" />
   </ItemGroup>
 
