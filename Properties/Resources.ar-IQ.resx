@@ -135,11 +135,29 @@
   <data name="Fetching" xml:space="preserve">
     <value>وا زانیاری ڤیدیۆکە ڕادەکێشێ</value>
   </data>
+  <data name="Flaticon" xml:space="preserve">
+    <value>سپاس بۆ ئەم سایتە بۆ ئایکۆنەکان flaticon.com</value>
+  </data>
   <data name="Found" xml:space="preserve">
     <value>زانیاری ڤیدیۆکە دۆزرایەوە</value>
   </data>
+  <data name="Github" xml:space="preserve">
+    <value>کۆدەکە هەر نەبینی باشترە</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>نەکرا زانیاری ڤیدیۆکە بدۆزرێتەوە</value>
+  </data>
+  <data name="ToDark" xml:space="preserve">
+    <value>دنیا تاریک داهات</value>
+  </data>
+  <data name="ToEnglish" xml:space="preserve">
+    <value>بە ئینگلیزی هەمووی پێشان ئەدرێ</value>
+  </data>
+  <data name="ToKurdish" xml:space="preserve">
+    <value>سڵاو لە کوردزمان</value>
+  </data>
+  <data name="ToLight" xml:space="preserve">
+    <value>ڕووناکی هاتەوە</value>
   </data>
   <data name="VidAuthor" xml:space="preserve">
     <value>کەناڵ</value>

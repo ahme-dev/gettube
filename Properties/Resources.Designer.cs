@@ -115,6 +115,15 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to credits to flaticon.com for the icons!.
+        /// </summary>
+        internal static string Flaticon {
+            get {
+                return ResourceManager.GetString("Flaticon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Found video info!.
         /// </summary>
         internal static string Found {
@@ -124,11 +133,56 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to you&apos;re checking the source code. oh no!.
+        /// </summary>
+        internal static string Github {
+            get {
+                return ResourceManager.GetString("Github", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find video info!.
         /// </summary>
         internal static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to it is getting dark out here!.
+        /// </summary>
+        internal static string ToDark {
+            get {
+                return ResourceManager.GetString("ToDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to displaying in plain english!.
+        /// </summary>
+        internal static string ToEnglish {
+            get {
+                return ResourceManager.GetString("ToEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hello to the kurdish-speaking one!.
+        /// </summary>
+        internal static string ToKurdish {
+            get {
+                return ResourceManager.GetString("ToKurdish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to it is bright again!.
+        /// </summary>
+        internal static string ToLight {
+            get {
+                return ResourceManager.GetString("ToLight", resourceCulture);
             }
         }
         

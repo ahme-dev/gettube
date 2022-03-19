@@ -48,12 +48,12 @@ namespace GetTube
 
         private void EventFlaticon(object sender, RoutedEventArgs e)
         {
-            secStatus.Content = "Thanks to flaticon.com for the icons";
+            secStatus.Content = Properties.Resources.Flaticon;
         }
 
         private void EventSource(object sender, RoutedEventArgs e)
         {
-            secStatus.Content = "You're checking the source code, oh no!";
+            secStatus.Content = Properties.Resources.Github;
             Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://github.com/ahmadkabdullah/GetTube"}") { CreateNoWindow = true });
         }
 
@@ -65,18 +65,19 @@ namespace GetTube
             ResetVideoInfoUI();
 
             // say fetching and do fetch
-            varStatus.Content = "Fetching information...";
+            varStatus.Content = Properties.Resources.Fetching;
             var video = await youtube.Videos.GetAsync(varVideoURL.Text);
 
             // if video not found 
             if (video == null)
             {
-                varStatus.Content = "Video info not found!";
+                varStatus.Content = Properties.Resources.NotFound;
             }
             // otherwise if found
             else
             {
-                varStatus.Content = "Video info found!";
+                // say info was found
+                varStatus.Content = Properties.Resources.Found;
 
                 // set the values for preview from url
                 varVidTitle.Text = video.Title;
@@ -90,9 +91,9 @@ namespace GetTube
                 videoBtn.Click += DownloadVideo;
                 audioBtn.Click += DownloadAudio;
 
-                // say info was found and make section appear
+                // make section appear
                 varVidInfo.Opacity = 0.9;
-                varStatus.Content = "Waiting for quality selection...";
+                varStatus.Content = Properties.Resources.WaitingFormat;
             }
         }
 
@@ -104,12 +105,12 @@ namespace GetTube
             var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
 
             // Stop button from working
-            varStatus.Content = "Now downloading...";
+            varStatus.Content = Properties.Resources.Downloading;
             audioBtn.Click -= DownloadAudio;
 
             // Download and notify after
             await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
-            varStatus.Content = "Audio was downloaded!";
+            varStatus.Content = Properties.Resources.DownloadedAudio;
         }
 
         async private void DownloadVideo(object sender, RoutedEventArgs e)
@@ -118,12 +119,12 @@ namespace GetTube
             var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
 
             // Stop button from working
-            varStatus.Content = "Now downloading...";
+            varStatus.Content = Properties.Resources.Downloading;
             videoBtn.Click -= DownloadVideo;
 
             // Download and notify after
             await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
-            varStatus.Content = "Video was downloaded!";
+            varStatus.Content = Properties.Resources.DownloadedVideo;
         }
 
         private void EventLang(object sender, RoutedEventArgs e)
@@ -133,10 +134,10 @@ namespace GetTube
             switch (SelectedLanguage)
             {
                 case "en-US":
-                    secStatus.Content = "Language is now English!";
+                    secStatus.Content = Properties.Resources.ToEnglish;
                     break;
                 case "ar-IQ":
-                    secStatus.Content = "سڵاو لە کوردزمان";
+                    secStatus.Content = Properties.Resources.ToKurdish;
                     break;
             }
         }
@@ -149,10 +150,10 @@ namespace GetTube
             switch (SelectedTheme)
             {
                 case "Dark":
-                    secStatus.Content = "It's getting dark out here!";
+                    secStatus.Content = Properties.Resources.ToDark;
                     break;
                 case "Light":
-                    secStatus.Content = "It's bright again";
+                    secStatus.Content = Properties.Resources.ToLight;
                     break;
             }
         }
@@ -161,9 +162,9 @@ namespace GetTube
         private void ResetVideoInfoUI()
         {
             varVidInfo.Opacity = 0.2;
-            varVidTitle.Text = "Title";
-            varVidAuthor.Text = "Author";
-            varVidDuration.Text = "Duration";
+            varVidTitle.Text = Properties.Resources.VidTitle;
+            varVidAuthor.Text = Properties.Resources.VidAuthor;
+            varVidDuration.Text = Properties.Resources.VidDuration;
 
             // make buttons not clickable
             videoBtn.Click -= DownloadVideo;
