@@ -43,11 +43,12 @@ namespace GetTube
 
         private void EventFlaticon(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://www.flaticon.com"}") { CreateNoWindow = true });
+            secStatus.Content = "Thanks to flaticon.com for the icons";
         }
 
         private void EventSource(object sender, RoutedEventArgs e)
         {
+            secStatus.Content = "You're checking the source code, oh no!";
             Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://github.com/ahmadkabdullah/GetTube"}") { CreateNoWindow = true });
         }
 
@@ -122,24 +123,11 @@ namespace GetTube
 
         private void EventLang(object sender, RoutedEventArgs e)
         {
-            // set another language
-            switch (SelectedLanguage)
-            {
-                case "en-US":
-                    SelectedLanguage = "ar-IQ";
-                    break;
-                case "ar-IQ":
-                    SelectedLanguage = "en-US";
-                    break;
-            }
-            
-            // switch to set language
-            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+            SwitchUILang();
         }
 
         private void EventColor(object sender, RoutedEventArgs e)
         {
-
         }
 
         // to be run after a new link is given
@@ -154,5 +142,37 @@ namespace GetTube
             videoBtn.Click -= DownloadVideo;
             audioBtn.Click -= DownloadAudio;
         }
+        
+        private void SwitchUILang()
+        {
+            // set another language
+            switch (SelectedLanguage)
+            {
+                case "en-US":
+                    varVidAuthor.FontFamily =
+                        varVidDuration.FontFamily =
+                        varVidTitle.FontFamily =
+                        videoBtn.FontFamily =
+                        audioBtn.FontFamily = 
+                        varStatus.FontFamily = new FontFamily("NRT BOLD");
+                    SelectedLanguage = "ar-IQ";
+                    secStatus.Content = "Changed language to Kurdish!";
+                    break;
 
+                case "ar-IQ":
+                    varVidAuthor.FontFamily =
+                        varVidDuration.FontFamily =
+                        varVidTitle.FontFamily =
+                        videoBtn.FontFamily =
+                        audioBtn.FontFamily =
+                        varStatus.FontFamily = new FontFamily("Fira Sans");
+                    SelectedLanguage = "en-US";
+                    secStatus.Content = "Changed language to English!";
+                    break;
+            }
+
+            // switch to set language
+            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+        }
+    }
 }

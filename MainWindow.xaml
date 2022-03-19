@@ -12,11 +12,11 @@
 
         mc:Ignorable="d"
         Title="GetTube (YouTube Video Downloader)"
-        MinHeight="520" MinWidth="480"
-        Height="520" Width="480"
+        MinHeight="540" MinWidth="480"
+        Height="540" Width="480"
         >
 
-    <Grid>
+    <Grid x:Name="container">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -67,7 +67,7 @@
                 </Grid>
 
                 <!-- STATUS SECTION -->
-                <Label x:Name="varStatus" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
+                <Label x:Name="varStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
 
                 <!-- VIDEO SECTION -->
                 <DockPanel x:Name="varVidInfo" Margin="10,0" Opacity="0.2">
@@ -144,7 +144,12 @@
                        />
             </Button>
 
-            <Button Cursor="Hand" Grid.Column="3" Click="EventFlaticon" BorderThickness="0">
+            <Label Grid.Column="2" x:Name="secStatus" HorizontalAlignment="Center" Foreground="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+
+            <Button Cursor="Hand" Grid.Column="3"
+                    Click="EventFlaticon"
+                    ClickMode="Hover"
+                    BorderThickness="0">
                 <Button.Background>
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
