@@ -120,26 +120,39 @@ namespace GetTube
             varStatus.Content = "Video was downloaded!";
         }
 
-        private void ResetVideoInfoUI()
-        {
-                varVidInfo.Opacity = 0.2;
-                varVidTitle.Text = "Title";
-                varVidAuthor.Text = "Author";
-                varVidDuration.Text = "Duration";
-
-                // make buttons not clickable
-                videoBtn.Click -= DownloadVideo;
-                audioBtn.Click -= DownloadAudio;
-        }
-
         private void EventLang(object sender, RoutedEventArgs e)
         {
-            LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
-            LocalizeDictionary.Instance.Culture = new CultureInfo("ar-IQ");
+            // set another language
+            switch (SelectedLanguage)
+            {
+                case "en-US":
+                    SelectedLanguage = "ar-IQ";
+                    break;
+                case "ar-IQ":
+                    SelectedLanguage = "en-US";
+                    break;
+            }
+            
+            // switch to set language
+            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
         }
+
         private void EventColor(object sender, RoutedEventArgs e)
         {
 
         }
-    }
+
+        // to be run after a new link is given
+        private void ResetVideoInfoUI()
+        {
+            varVidInfo.Opacity = 0.2;
+            varVidTitle.Text = "Title";
+            varVidAuthor.Text = "Author";
+            varVidDuration.Text = "Duration";
+
+            // make buttons not clickable
+            videoBtn.Click -= DownloadVideo;
+            audioBtn.Click -= DownloadAudio;
+        }
+
 }

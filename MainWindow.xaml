@@ -67,7 +67,7 @@
                 </Grid>
 
                 <!-- STATUS SECTION -->
-                <Label x:Name="varStatus" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc Waiting}" />
+                <Label x:Name="varStatus" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
 
                 <!-- VIDEO SECTION -->
                 <DockPanel x:Name="varVidInfo" Margin="10,0" Opacity="0.2">
@@ -80,9 +80,9 @@
                         </DockPanel.Background>
                         <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/res4.png" Margin="4"/>
                         <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
-                            <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="Title" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="Author" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="varVidDuration" DockPanel.Dock="Right" Text="Duration" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="varVidDuration" DockPanel.Dock="Right" Text="{lex:Loc VidDuration}" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
                         </DockPanel>
                     </DockPanel>
 
@@ -94,17 +94,17 @@
                             </LinearGradientBrush>
                         </DockPanel.Background>
 
-                        <Button x:Name="audioBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
+                        <Button x:Name="audioBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center"
+                                Content="{lex:Loc DownloadAudio}">
                             <Button.Background>
                                 <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                             </Button.Background>
-                            Download Audio
                         </Button>
-                        <Button x:Name="videoBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center">
+                        <Button x:Name="videoBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center"
+                                Content="{lex:Loc DownloadVideo}">
                             <Button.Background>
                                 <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                             </Button.Background>
-                            Download Video (Highest Quality)
                         </Button>
                     </DockPanel>
                 </DockPanel>

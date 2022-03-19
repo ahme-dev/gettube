@@ -61,11 +61,119 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting for URL.
+        ///   Looks up a localized string similar to Download Audio .
         /// </summary>
-        internal static string Waiting {
+        internal static string DownloadAudio {
             get {
-                return ResourceManager.GetString("Waiting", resourceCulture);
+                return ResourceManager.GetString("DownloadAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloaded audio!.
+        /// </summary>
+        internal static string DownloadedAudio {
+            get {
+                return ResourceManager.GetString("DownloadedAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Downloaded video!.
+        /// </summary>
+        internal static string DownloadedVideo {
+            get {
+                return ResourceManager.GetString("DownloadedVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now downloading....
+        /// </summary>
+        internal static string Downloading {
+            get {
+                return ResourceManager.GetString("Downloading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download Video (Highest Quality).
+        /// </summary>
+        internal static string DownloadVideo {
+            get {
+                return ResourceManager.GetString("DownloadVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fetching video info....
+        /// </summary>
+        internal static string Fetching {
+            get {
+                return ResourceManager.GetString("Fetching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Found video info!.
+        /// </summary>
+        internal static string Found {
+            get {
+                return ResourceManager.GetString("Found", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find video info!.
+        /// </summary>
+        internal static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        internal static string VidAuthor {
+            get {
+                return ResourceManager.GetString("VidAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        internal static string VidDuration {
+            get {
+                return ResourceManager.GetString("VidDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        internal static string VidTitle {
+            get {
+                return ResourceManager.GetString("VidTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for format selection....
+        /// </summary>
+        internal static string WaitingFormat {
+            get {
+                return ResourceManager.GetString("WaitingFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for URL....
+        /// </summary>
+        internal static string WaitingURL {
+            get {
+                return ResourceManager.GetString("WaitingURL", resourceCulture);
             }
         }
     }

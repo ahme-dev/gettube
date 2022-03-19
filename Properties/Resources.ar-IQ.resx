@@ -117,7 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Waiting" xml:space="preserve">
-    <value>چاوەڕوانی لینکی ڤیدیۆیە</value>
+  <data name="DownloadAudio" xml:space="preserve">
+    <value>تەنها دەنگەکە داونلۆد بکە</value>
+  </data>
+  <data name="DownloadedAudio" xml:space="preserve">
+    <value>دەنگەکە دابەزێنرا</value>
+  </data>
+  <data name="DownloadedVideo" xml:space="preserve">
+    <value>ڤیدیۆکە دابەزێنرا</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>وا داوندلۆدەکات</value>
+  </data>
+  <data name="DownloadVideo" xml:space="preserve">
+    <value>ڤیدیۆکە داونلۆد بکە بە بەرزترین کوالێتی</value>
+  </data>
+  <data name="Fetching" xml:space="preserve">
+    <value>وا زانیاری ڤیدیۆکە ڕادەکێشێ</value>
+  </data>
+  <data name="Found" xml:space="preserve">
+    <value>زانیاری ڤیدیۆکە دۆزرایەوە</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>نەکرا زانیاری ڤیدیۆکە بدۆزرێتەوە</value>
+  </data>
+  <data name="VidAuthor" xml:space="preserve">
+    <value>کەناڵ</value>
+  </data>
+  <data name="VidDuration" xml:space="preserve">
+    <value>وادە</value>
+  </data>
+  <data name="VidTitle" xml:space="preserve">
+    <value>ناونیشان</value>
+  </data>
+  <data name="WaitingFormat" xml:space="preserve">
+    <value>چاوەڕوانی هەڵبژاردنی جۆری داونلۆدەکەیە</value>
+  </data>
+  <data name="WaitingURL" xml:space="preserve">
+    <value>چاوەڕوانی لینکی ڤیدیۆکەیە</value>
   </data>
 </root>

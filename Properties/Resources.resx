@@ -117,7 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Waiting" xml:space="preserve">
-    <value>Waiting for URL</value>
+  <data name="DownloadAudio" xml:space="preserve">
+    <value>Download Audio </value>
+  </data>
+  <data name="DownloadedAudio" xml:space="preserve">
+    <value>Downloaded audio!</value>
+  </data>
+  <data name="DownloadedVideo" xml:space="preserve">
+    <value>Downloaded video!</value>
+  </data>
+  <data name="Downloading" xml:space="preserve">
+    <value>Now downloading...</value>
+  </data>
+  <data name="DownloadVideo" xml:space="preserve">
+    <value>Download Video (Highest Quality)</value>
+  </data>
+  <data name="Fetching" xml:space="preserve">
+    <value>Fetching video info...</value>
+  </data>
+  <data name="Found" xml:space="preserve">
+    <value>Found video info!</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>Could not find video info!</value>
+  </data>
+  <data name="VidAuthor" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="VidDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="VidTitle" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="WaitingFormat" xml:space="preserve">
+    <value>Waiting for format selection...</value>
+  </data>
+  <data name="WaitingURL" xml:space="preserve">
+    <value>Waiting for URL...</value>
   </data>
 </root>
