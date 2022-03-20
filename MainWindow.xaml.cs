@@ -66,7 +66,17 @@ namespace GetTube
 
             // say fetching and do fetch
             varStatus.Content = Properties.Resources.Fetching;
-            var video = await youtube.Videos.GetAsync(varVideoURL.Text);
+
+            YoutubeExplode.Videos.Video? video;
+
+            try
+            {
+                video = await youtube.Videos.GetAsync(varVideoURL.Text);
+            }
+            catch
+            {
+                video = null;
+            }
 
             // if video not found 
             if (video == null)
