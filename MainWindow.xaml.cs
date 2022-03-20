@@ -112,7 +112,8 @@ namespace GetTube
         async private void DownloadAudio(object sender, RoutedEventArgs e)
         {
             // Get audio stream
-            var streamInfo = streamManifest.GetAudioOnlyStreams().GetWithHighestBitrate();
+            IStreamInfo? streamInfo = streamManifest.GetAudioOnlyStreams()
+                                                    .GetWithHighestBitrate();
 
             // Stop button from working
             varStatus.Content = Properties.Resources.Downloading;
@@ -208,10 +209,10 @@ namespace GetTube
                         varStatus.FontFamily = new FontFamily("Fira Sans");
                     SelectedLanguage = "en-US";
                         break;
-                }
+            }
 
-                // switch to set language
-                LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+            // switch to set language
+            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
         }
 
         private void SwitchUITheme()
@@ -226,7 +227,7 @@ namespace GetTube
                 case "Dark":
                     // light theme colors
                     bgCol = Brushes.WhiteSmoke;
-                    fgCol = Brushes.Black;
+                    fgCol = new SolidColorBrush(Color.FromArgb(0xFF, 20, 20, 20));
                     fgColB = Brushes.Gray;
                     SelectedTheme = "Light";
                     break;
@@ -234,15 +235,15 @@ namespace GetTube
                     // dark theme colors
                     bgCol = new SolidColorBrush(Color.FromArgb(0xFF, 30, 30, 30));
                     fgCol = Brushes.WhiteSmoke;
-                    fgColB = new SolidColorBrush(Color.FromArgb(0xFF, 140, 140, 140));
+                    fgColB = Brushes.Gray;
                     SelectedTheme = "Dark";
                     break;
             }
 
             // finally set all the colors
+            container.Background = bgCol;
             varVideoURL.Background = bgCol;
             varVideoURL.Foreground = fgCol;
-            container.Background = bgCol;
             varStatus.Foreground = fgCol;
             secStatus.Foreground = fgColB;
         }
