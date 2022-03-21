@@ -39,19 +39,17 @@ namespace GetTube
 
             // check for config's existence
             RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GetTube");
-
             if (key == null)
             {
-                // if first run, create config
+                // if first run, create config for reading
                 RegistryKey newKey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GetTube", true);
                 newKey.SetValue("Theme", "Light");
                 newKey.SetValue("Language", "en-US");
                 newKey.Close();
             }
 
-            // read the configuration
+            // read the configuration anyways
             ReadConfig();
-            Console.WriteLine("SELECTED CONFIG IS " + SelectedLanguage + SelectedTheme);
 
             // modify UI according to config
             SetUILang(SelectedLanguage);
