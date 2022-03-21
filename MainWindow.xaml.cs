@@ -19,6 +19,7 @@ using WPFLocalizeExtension;
 using WPFLocalizeExtension.Engine;
 using System.Globalization;
 using Microsoft.Win32;
+using Syroot.Windows.IO;
 
 namespace GetTube
 {
@@ -32,6 +33,8 @@ namespace GetTube
 
         private string? SelectedTheme;
         private string? SelectedLanguage;
+
+        private string? DownloadsFolder;
 
         public MainWindow()
         {
@@ -58,6 +61,9 @@ namespace GetTube
             // set language at start up
             LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
             LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+
+            // set the downloads folder
+            DownloadsFolder = new KnownFolder(KnownFolderType.Downloads).Path;
         }
 
         private void ReadConfig()
@@ -143,30 +149,35 @@ namespace GetTube
         {
             // Get audio stream
             IStreamInfo? streamInfo = streamManifest.GetAudioOnlyStreams()
-                                                    .GetWithHighestBitrate();
+                .GetWithHighestBitrate();
 
             // Stop button from working
             varStatus.Content = Properties.Resources.Downloading;
             audioBtn.Click -= DownloadAudio;
 
             // Download and notify after
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
+            string fileToSave = DownloadsFolder+"\\"+$"{varVidTitle.Text}.{streamInfo.Container}";
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
             varStatus.Content = Properties.Resources.DownloadedAudio;
         }
 
         async private void DownloadVideo(object sender, RoutedEventArgs e)
         {
             // Get mixed stream 
-            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+            IStreamInfo? streamInfo = streamManifest.GetMuxedStreams()
+                .GetWithHighestVideoQuality();
 
             // Stop button from working
             varStatus.Content = Properties.Resources.Downloading;
             videoBtn.Click -= DownloadVideo;
 
             // Download and notify after
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, $"{varVidTitle.Text}.{streamInfo.Container}");
+            string fileToSave = DownloadsFolder+"\\"+$"{varVidTitle.Text}.{streamInfo.Container}";
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
             varStatus.Content = Properties.Resources.DownloadedVideo;
         }
+
+        // Pressing Language and Color Buttons
 
         private void EventLang(object sender, RoutedEventArgs e)
         {
@@ -199,19 +210,6 @@ namespace GetTube
             }
         }
 
-        // to be run after a new link is given
-        private void ResetVideoInfoUI()
-        {
-            varVidInfo.Opacity = 0.2;
-            varVidTitle.Text = Properties.Resources.VidTitle;
-            varVidAuthor.Text = Properties.Resources.VidAuthor;
-            varVidDuration.Text = Properties.Resources.VidDuration;
-
-            // make buttons not clickable
-            videoBtn.Click -= DownloadVideo;
-            audioBtn.Click -= DownloadAudio;
-        }
-        
         private void SetUILang(string language)
         {
             // set another language
@@ -281,6 +279,19 @@ namespace GetTube
 
             // update configuration
             UpdateConfig();
+        }
+
+        // to be run after a new link is given
+        private void ResetVideoInfoUI()
+        {
+            varVidInfo.Opacity = 0.2;
+            varVidTitle.Text = Properties.Resources.VidTitle;
+            varVidAuthor.Text = Properties.Resources.VidAuthor;
+            varVidDuration.Text = Properties.Resources.VidDuration;
+
+            // make buttons not clickable
+            videoBtn.Click -= DownloadVideo;
+            audioBtn.Click -= DownloadAudio;
         }
     }
 }
