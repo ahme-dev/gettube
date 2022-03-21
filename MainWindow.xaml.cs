@@ -18,6 +18,7 @@ using YoutubeExplode.Videos.Streams;
 using WPFLocalizeExtension;
 using WPFLocalizeExtension.Engine;
 using System.Globalization;
+using Microsoft.Win32;
 
 namespace GetTube
 {
@@ -28,22 +29,53 @@ namespace GetTube
     {
         private YoutubeClient youtube = new();
         private StreamManifest? streamManifest;
-        private string SelectedTheme;
-        private string SelectedLanguage;
+
+        private string? SelectedTheme;
+        private string? SelectedLanguage;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // set theme and language
-            SwitchUILang();
-            SwitchUITheme();
+            // check for config's existence
+            RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GetTube");
 
-            // retrieve configuration
+            if (key == null)
+            {
+                // if first run, create config
+                RegistryKey newKey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GetTube", true);
+                newKey.SetValue("Theme", "Light");
+                newKey.SetValue("Language", "en-US");
+                newKey.Close();
+            }
+
+            // read the configuration
+            ReadConfig();
+            Console.WriteLine("SELECTED CONFIG IS " + SelectedLanguage + SelectedTheme);
+
+            // modify UI according to config
+            SetUILang(SelectedLanguage);
+            SetUITheme(SelectedTheme);
 
             // set language at start up
             LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
             LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+        }
+
+        private void ReadConfig()
+        {
+            RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GetTube");
+            SelectedLanguage = key.GetValue("Language").ToString();
+            SelectedTheme = key.GetValue("Theme").ToString();
+            key.Close();
+        }
+
+        private void UpdateConfig()
+        {
+            RegistryKey? key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\GetTube", true);
+            key.SetValue("Language", SelectedLanguage);
+            key.SetValue("Theme", SelectedTheme);
+            key.Close();
         }
 
         private void EventFlaticon(object sender, RoutedEventArgs e)
@@ -140,14 +172,14 @@ namespace GetTube
 
         private void EventLang(object sender, RoutedEventArgs e)
         {
-            SwitchUILang();
-
             switch (SelectedLanguage)
             {
                 case "en-US":
+                    SetUILang("ar-IQ");
                     secStatus.Content = Properties.Resources.ToEnglish;
                     break;
                 case "ar-IQ":
+                    SetUILang("en-US");
                     secStatus.Content = Properties.Resources.ToKurdish;
                     break;
             }
@@ -155,15 +187,15 @@ namespace GetTube
 
         private void EventColor(object sender, RoutedEventArgs e)
         {
-            SwitchUITheme();
-
             // switch theme
             switch (SelectedTheme)
             {
                 case "Dark":
+                    SetUITheme("Light");
                     secStatus.Content = Properties.Resources.ToDark;
                     break;
                 case "Light":
+                    SetUITheme("Dark");
                     secStatus.Content = Properties.Resources.ToLight;
                     break;
             }
@@ -182,12 +214,12 @@ namespace GetTube
             audioBtn.Click -= DownloadAudio;
         }
         
-        private void SwitchUILang()
+        private void SetUILang(string language)
         {
             // set another language
-            switch (SelectedLanguage)
+            switch (language)
             {
-                case "en-US":
+                case "ar-IQ":
                     varVidAuthor.FontFamily =
                         varVidDuration.FontFamily =
                         varVidTitle.FontFamily =
@@ -198,8 +230,7 @@ namespace GetTube
                     SelectedLanguage = "ar-IQ";
                         break;
 
-                default:
-                case "ar-IQ":
+                case "en-US":
                     varVidAuthor.FontFamily =
                         varVidDuration.FontFamily =
                         varVidTitle.FontFamily =
@@ -213,25 +244,28 @@ namespace GetTube
 
             // switch to set language
             LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+
+            // update configuration
+            UpdateConfig();
         }
 
-        private void SwitchUITheme()
+        private void SetUITheme(string theme)
         {
             // used colors
             Brush bgCol, fgCol, fgColB;
 
             // switch theme
-            switch (SelectedTheme)
+            switch (theme)
             {
                 default:
-                case "Dark":
+                case "Light":
                     // light theme colors
                     bgCol = Brushes.WhiteSmoke;
                     fgCol = new SolidColorBrush(Color.FromArgb(0xFF, 20, 20, 20));
                     fgColB = Brushes.Gray;
                     SelectedTheme = "Light";
                     break;
-                case "Light":
+                case "Dark":
                     // dark theme colors
                     bgCol = new SolidColorBrush(Color.FromArgb(0xFF, 30, 30, 30));
                     fgCol = Brushes.WhiteSmoke;
@@ -246,6 +280,9 @@ namespace GetTube
             varVideoURL.Foreground = fgCol;
             varStatus.Foreground = fgCol;
             secStatus.Foreground = fgColB;
+
+            // update configuration
+            UpdateConfig();
         }
     }
 }
