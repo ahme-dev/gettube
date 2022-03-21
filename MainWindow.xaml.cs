@@ -58,10 +58,6 @@ namespace GetTube
             SetUILang(SelectedLanguage);
             SetUITheme(SelectedTheme);
 
-            // set language at start up
-            LocalizeDictionary.Instance.SetCurrentThreadCulture = true;
-            LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
-
             // set the downloads folder
             DownloadsFolder = new KnownFolder(KnownFolderType.Downloads).Path;
         }
@@ -185,11 +181,11 @@ namespace GetTube
             {
                 case "en-US":
                     SetUILang("ar-IQ");
-                    secStatus.Content = Properties.Resources.ToEnglish;
+                    secStatus.Content = Properties.Resources.ToKurdish;
                     break;
                 case "ar-IQ":
                     SetUILang("en-US");
-                    secStatus.Content = Properties.Resources.ToKurdish;
+                    secStatus.Content = Properties.Resources.ToEnglish;
                     break;
             }
         }
@@ -201,11 +197,11 @@ namespace GetTube
             {
                 case "Dark":
                     SetUITheme("Light");
-                    secStatus.Content = Properties.Resources.ToDark;
+                    secStatus.Content = Properties.Resources.ToLight;
                     break;
                 case "Light":
                     SetUITheme("Dark");
-                    secStatus.Content = Properties.Resources.ToLight;
+                    secStatus.Content = Properties.Resources.ToDark;
                     break;
             }
         }
