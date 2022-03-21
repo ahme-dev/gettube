@@ -37,7 +37,7 @@
                    Margin="0,25,0,0"
                    Source="/GetTube.png"/>
 
-            <Label FontSize="16" Foreground="Gray" Content="v0.1.2.0"/>
+            <Label FontSize="16" Foreground="Gray" Content="vGit"/>
         </Grid>
 
         <!-- CONTENT -->
