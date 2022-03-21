@@ -121,19 +121,19 @@
     <value>تەنها دەنگەکە داونلۆد بکە</value>
   </data>
   <data name="DownloadedAudio" xml:space="preserve">
-    <value>دەنگەکە دابەزێنرا</value>
+    <value>✔️ دەنگەکە داونلۆدکرا</value>
   </data>
   <data name="DownloadedVideo" xml:space="preserve">
-    <value>ڤیدیۆکە دابەزێنرا</value>
+    <value>✔️ ڤیدیۆکە داونلۆدکرا</value>
   </data>
   <data name="Downloading" xml:space="preserve">
-    <value>وا داوندلۆدەکات</value>
+    <value>🕓 وا داونلۆد دەکات. چاوەڕوانبە</value>
   </data>
   <data name="DownloadVideo" xml:space="preserve">
     <value>ڤیدیۆکە داونلۆد بکە بە بەرزترین کوالێتی</value>
   </data>
   <data name="Fetching" xml:space="preserve">
-    <value>وا زانیاری ڤیدیۆکە ڕادەکێشێ</value>
+    <value>🕓 وا زانیاری ڕادەکێشێ. چاوەڕوانبە</value>
   </data>
   <data name="Flaticon" xml:space="preserve">
     <value>سپاس بۆ ئایکۆن دروستکەرەکان flaticon.com</value>
@@ -145,7 +145,7 @@
     <value>کۆدەکە هەر نەبینی باشترە</value>
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value>نەکرا زانیاری ڤیدیۆکە بدۆزرێتەوە</value>
+    <value>❌ زانیاری ڤیدیۆکە نەدۆزرایەوە</value>
   </data>
   <data name="ToDark" xml:space="preserve">
     <value>دنیا تاریک داهات</value>
@@ -169,9 +169,9 @@
     <value>ناونیشان</value>
   </data>
   <data name="WaitingFormat" xml:space="preserve">
-    <value>چاوەڕوانی هەڵبژاردنی جۆری داونلۆدەکەیە</value>
+    <value>تکایە جۆری داونلۆدەکە هەڵبژێرە</value>
   </data>
   <data name="WaitingURL" xml:space="preserve">
-    <value>چاوەڕوانی لینکی ڤیدیۆکەیە</value>
+    <value>تکایە لینکی ڤیدیۆکە دانێ</value>
   </data>
 </root>

@@ -70,7 +70,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloaded audio!.
+        ///   Looks up a localized string similar to ✔️ Downloaded audio!.
         /// </summary>
         internal static string DownloadedAudio {
             get {
@@ -79,7 +79,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Downloaded video!.
+        ///   Looks up a localized string similar to ✔️ Downloaded video!.
         /// </summary>
         internal static string DownloadedVideo {
             get {
@@ -88,7 +88,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Now downloading....
+        ///   Looks up a localized string similar to 🕓 Now downloading....
         /// </summary>
         internal static string Downloading {
             get {
@@ -106,7 +106,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fetching video info....
+        ///   Looks up a localized string similar to 🕓 Fetching video info....
         /// </summary>
         internal static string Fetching {
             get {
@@ -142,7 +142,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Could not find video info!.
+        ///   Looks up a localized string similar to ❌ Could not find video info!.
         /// </summary>
         internal static string NotFound {
             get {
@@ -214,7 +214,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting for format selection....
+        ///   Looks up a localized string similar to Please select the download format.
         /// </summary>
         internal static string WaitingFormat {
             get {
@@ -223,7 +223,7 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Waiting for URL....
+        ///   Looks up a localized string similar to Please give the URL of the video.
         /// </summary>
         internal static string WaitingURL {
             get {
