@@ -73,7 +73,7 @@
                             Margin="2,0"
                             Click="EventGetVideo"
                             Padding="5" Background="#00DDDDDD" BorderThickness="0,0,0,0">
-                        <Image Source="/res3.png"/>
+                        <Image Source="/Fetch.png"/>
                     </Button>
                 </Grid>
 
@@ -89,7 +89,7 @@
                                 <GradientStop Color="#FFCFE4D2" Offset="1"/>
                             </LinearGradientBrush>
                         </DockPanel.Background>
-                        <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/res4.png" Margin="4"/>
+                        <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png" Margin="4"/>
                         <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
                             <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
                             <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
@@ -138,7 +138,7 @@
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
                 <Image Margin="5,1"
-                       Source="/res1.png" Stretch="Fill"
+                       Source="/Theme.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />
@@ -149,7 +149,7 @@
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
                 <Image Margin="5,1"
-                       Source="/res5.png" Stretch="Fill"
+                       Source="/Language.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />
@@ -167,7 +167,7 @@
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
                 <Image Margin="5"
-                       Source="/res1.1.png" Stretch="Fill"
+                       Source="/Flaticon.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />
@@ -178,7 +178,7 @@
                     <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
                 </Button.Background>
                 <Image Margin="5,1"
-                       Source="/res2.png" Stretch="Fill"
+                       Source="/Source.png" Stretch="Fill"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        />

@@ -8,16 +8,17 @@
     <StartupObject></StartupObject>
     <ApplicationIcon>GetTube.ico</ApplicationIcon>
     <DebugType>none</DebugType>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fetch.png" />
+    <None Remove="Flaticon.png" />
     <None Remove="GetTube.png" />
-    <None Remove="res1.1.png" />
-    <None Remove="res1.png" />
-    <None Remove="res2.png" />
-    <None Remove="res3.png" />
-    <None Remove="res4.png" />
-    <None Remove="res5.png" />
+    <None Remove="Language.png" />
+    <None Remove="Source.png" />
+    <None Remove="Theme.png" />
+    <None Remove="Thumbnail.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,13 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Fetch.png" />
+    <Resource Include="Flaticon.png" />
     <Resource Include="GetTube.png" />
-    <Resource Include="res1.1.png" />
-    <Resource Include="res1.png" />
-    <Resource Include="res2.png" />
-    <Resource Include="res3.png" />
-    <Resource Include="res4.png" />
-    <Resource Include="res5.png" />
+    <Resource Include="Language.png" />
+    <Resource Include="Source.png" />
+    <Resource Include="Theme.png" />
+    <Resource Include="Thumbnail.png" />
   </ItemGroup>
 
   <ItemGroup>
