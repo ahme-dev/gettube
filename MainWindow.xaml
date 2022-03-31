@@ -16,7 +16,7 @@
         Height="570" Width="480"
         >
 
-    <Grid x:Name="container" Background="WhiteSmoke">
+    <Grid x:Name="uiContainer" Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -57,7 +57,7 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBox Grid.Column="0"
-                             x:Name="varVideoURL"
+                             x:Name="uiURLBox"
                              VerticalContentAlignment="Center"
                              HorizontalContentAlignment="Center"
                              Padding="10,3"
@@ -78,10 +78,10 @@
                 </Grid>
 
                 <!-- STATUS SECTION -->
-                <Label x:Name="varStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
+                <Label x:Name="uiStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
 
 				<!-- VIDEO SECTION -->
-                <DockPanel x:Name="varVidInfo" Margin="10,0" Opacity="0.2">
+                <DockPanel x:Name="uiVidBox" Margin="10,0" Opacity="0.2">
                         <DockPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#FFA8C5EA"/>
@@ -90,17 +90,17 @@
                         </DockPanel.Background>
 
                     <DockPanel Margin="5" DockPanel.Dock="Top">
-                        <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png"/>
+                        <Image x:Name="uiVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png"/>
 
                         <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
-                            <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="varVidDuration" DockPanel.Dock="Right" Text="{lex:Loc VidDuration}" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
+                            <TextBlock x:Name="uiVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="uiVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="uiVidDuration" DockPanel.Dock="Right" Text="{lex:Loc VidDuration}" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
                         </DockPanel>
                     </DockPanel>
 
                     <DockPanel Margin="9,3" Height="35" DockPanel.Dock="Top">
-						<Button x:Name="audioBtn"
+						<Button x:Name="uiAudioBtn"
 								Cursor="Hand"
 								Padding="5,0"
 								FontWeight="Heavy"
@@ -113,7 +113,7 @@
 								<SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
 							</Button.Background>
 						</Button>
-						<Button x:Name="videoBtn"
+						<Button x:Name="uiVideoBtn"
 								Cursor="Hand"
 								Padding="5,0"
 								FontWeight="Heavy"
@@ -164,7 +164,7 @@
                        />
             </Button>
 
-            <Label Grid.Column="2" x:Name="secStatus"
+            <Label Grid.Column="2" x:Name="uiSecStatus"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Foreground="Gray" />
