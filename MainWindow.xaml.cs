@@ -19,6 +19,9 @@ using System.Globalization;
 using Microsoft.Win32;
 using Syroot.Windows.IO;
 using YoutubeDLSharp;
+using YoutubeDLSharp.Options;
+using System.Threading;
+using YoutubeDLSharp.Metadata;
 
 namespace GetTube;
 
@@ -26,7 +29,13 @@ public partial class MainWindow : Window
 {
 	private string? SelectedTheme;
 	private string? SelectedLanguage;
-	private string? DownloadsFolder;
+	private readonly string? DownloadsFolder;
+
+	private YoutubeDL ytClient;
+	private string? ytUrl;
+	private RunResult<VideoData> ytRes;
+	private Progress<DownloadProgress>? ytProg;
+	private CancellationTokenSource ytCts;
 
 	public MainWindow()
 	{
@@ -41,6 +50,32 @@ public partial class MainWindow : Window
 
 		// set the downloads folder
 		DownloadsFolder = new KnownFolder(KnownFolderType.Downloads).Path;
+
+		// setup downloading with youtubedlsharp
+		SetupDownloader();
+	}
+
+	// setting up the used library for downloading
+
+	private void SetupDownloader()
+	{
+		// make downloader client
+		ytClient = new();
+
+		// set downloader paths
+		ytClient.YoutubeDLPath = DownloadsFolder + "\\" + "youtube-dl.exe";
+		ytClient.FFmpegPath = DownloadsFolder + "\\" + "ffmpeg.exe";
+		ytClient.OutputFolder = DownloadsFolder;
+
+		// set cancellation
+		ytCts = new CancellationTokenSource();
+
+		// set downloader prog element
+		ytProg = new(
+			p => uiStatus.Content =
+			Properties.Resources.Downloading + " " +
+			Utils.FloatToStr(p.Progress)
+			);
 	}
 
 	// Configuration management
@@ -92,17 +127,25 @@ public partial class MainWindow : Window
 	async private void EventGetVideo(object sender, RoutedEventArgs e)
 	{
 		// delete the info of the previous video
-		ResetVideoInfoUI();
+		ClearUIInfo();
 
-		// say fetching and do fetch
+		// say fetching and fetch info of new video
 		uiStatus.Content = Properties.Resources.Fetching;
+		ytRes = await ytClient.RunVideoDataFetch(uiURLBox.Text);
 
-		// TODO fetch video info
+		// check for no info found
+		if (ytRes == null)
+		{
+			uiStatus.Content = Properties.Resources.NotFound;
+			return;
+		}
 
-		// say info was found
+		// save link
+		ytUrl = uiURLBox.Text;
+
+		// say info was found and set on ui
 		uiStatus.Content = Properties.Resources.Found;
-
-		// TODO set video info on ui
+		ResetUIInfo();
 
 		// make buttons clickable
 		uiVideoBtn.Click += DownloadVideo;
@@ -115,16 +158,37 @@ public partial class MainWindow : Window
 
 	async private void DownloadAudio(object sender, RoutedEventArgs e)
 	{
-		// TODO download the audio
+		// cancel previous download
+		//ytCts.Cancel();
 
-		uiStatus.Content = Properties.Resources.DownloadedAudio;
+		// download reporting progress
+		var result = await ytClient.RunAudioDownload(
+			ytUrl,
+			AudioConversionFormat.Mp3,
+			progress: ytProg,
+			ct: ytCts.Token
+			);
+
+		// report finishing
+		if (result.Success) 
+			uiStatus.Content = Properties.Resources.DownloadedAudio;
 	}
 
 	async private void DownloadVideo(object sender, RoutedEventArgs e)
 	{
-		// TODO download the audio
+		// cancel previous download
+		//ytCts.Cancel();
 
-		uiStatus.Content = Properties.Resources.DownloadedVideo;
+		// download reporting progress
+		var result = await ytClient.RunVideoDownload(
+			ytUrl,
+			progress: ytProg,
+			ct: ytCts.Token
+			);
+
+		// report finishing
+		if (result.Success) 
+			uiStatus.Content = Properties.Resources.DownloadedVideo;
 	}
 
 	// Language and Color Buttons
@@ -159,7 +223,7 @@ public partial class MainWindow : Window
 				uiSecStatus.FontFamily =
 				uiStatus.FontFamily = new FontFamily("NRT BOLD");
 			SelectedLanguage = "ar-IQ";
-			uiSecStatus.Content = Properties.Resources.ToKurdish;
+			uiSecStatus.Content = Properties.Resources.ToEnglish;
 		}
 		else
 		{
@@ -171,7 +235,7 @@ public partial class MainWindow : Window
 				uiSecStatus.FontFamily =
 				uiStatus.FontFamily = new FontFamily("Fira Sans");
 			SelectedLanguage = "en-US";
-			uiSecStatus.Content = Properties.Resources.ToEnglish;
+			uiSecStatus.Content = Properties.Resources.ToKurdish;
 		}
 
 		// switch to set language
@@ -179,6 +243,9 @@ public partial class MainWindow : Window
 
 		// update configuration
 		UpdateConfig();
+
+		// reset the ui info as it was cleared by new culture
+		ResetUIInfo();
 	}
 
 	private void SetUITheme(string theme)
@@ -217,7 +284,7 @@ public partial class MainWindow : Window
 		UpdateConfig();
 	}
 
-	private void ResetVideoInfoUI()
+	private void ClearUIInfo()
 	{
 		// reset elements after new link is given
 		uiVidBox.Opacity = 0.2;
@@ -229,11 +296,21 @@ public partial class MainWindow : Window
 		uiVideoBtn.Click -= DownloadVideo;
 		uiAudioBtn.Click -= DownloadAudio;
 	}
+
+	private void ResetUIInfo()
+	{
+		if (ytRes == null)
+			return;
+
+		uiVidTitle.Text = ytRes.Data.Title;
+		uiVidAuthor.Text = ytRes.Data.Uploader;
+		uiVidDuration.Text = ytRes.Data.Duration.ToString();
+	}
 }
 
-class GTUtility
+class Utils
 {
-	static public string RemoveSpecialCharacters(string input)
+	public static string RemoveSpecialCharacters(string input)
 	{
 		string output = input;
 		var charsToRemove = new string[] { ",", "'", "\"" };
@@ -241,5 +318,14 @@ class GTUtility
 			output = output.Replace(c, string.Empty);
 
 		return output;
+	}
+
+	public static string FloatToStr(float num)
+	{
+		var str = string.Format("{0:N5}", num);
+		if (str.Length <= 1)
+			return str;
+		else
+			return str[2].ToString() + str[3].ToString() + "." + str[4].ToString();
 	}
 }
