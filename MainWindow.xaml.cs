@@ -161,7 +161,7 @@ public partial class MainWindow : Window
 		// cancel previous download
 		//ytCts.Cancel();
 
-		// download reporting progress
+		// download while reporting progress
 		var result = await ytClient.RunAudioDownload(
 			ytUrl,
 			AudioConversionFormat.Mp3,
@@ -179,7 +179,7 @@ public partial class MainWindow : Window
 		// cancel previous download
 		//ytCts.Cancel();
 
-		// download reporting progress
+		// download while reporting progress
 		var result = await ytClient.RunVideoDownload(
 			ytUrl,
 			progress: ytProg,
