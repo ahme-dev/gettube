@@ -4,7 +4,7 @@
 
 # GetTube
 
-An application for getting videos from youtube. GetTube uses the YoutubeExplode package to fetch content on YouTube whether in video form or audio only.
+An application for downloading videos from youtube, facebook, and whatever else youtube-dl supports. GetTube he youtubedlsharp package (and in turn youtube-dl and ffmpeg) to fetch content on various video sites whether in video form or audio only.
 
 <br>
 
