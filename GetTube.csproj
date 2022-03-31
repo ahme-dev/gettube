@@ -28,7 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Syroot.Windows.IO.KnownFolders" Version="1.2.3" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.9.4" />
-    <PackageReference Include="YoutubeExplode" Version="6.1.0" />
+    <PackageReference Include="YoutubeDLSharp" Version="0.4.2" />
   </ItemGroup>
 
   <ItemGroup>

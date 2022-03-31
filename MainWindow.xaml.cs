@@ -13,13 +13,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using YoutubeExplode;
-using YoutubeExplode.Videos.Streams;
 using WPFLocalizeExtension;
 using WPFLocalizeExtension.Engine;
 using System.Globalization;
 using Microsoft.Win32;
 using Syroot.Windows.IO;
+using YoutubeDLSharp;
 
 namespace GetTube
 {
@@ -28,9 +27,6 @@ namespace GetTube
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private YoutubeClient youtube = new();
-		private StreamManifest? streamManifest;
-
 		private string? SelectedTheme;
 		private string? SelectedLanguage;
 
@@ -99,33 +95,12 @@ namespace GetTube
 			// say fetching and do fetch
 			varStatus.Content = Properties.Resources.Fetching;
 
-			YoutubeExplode.Videos.Video? video;
-
-			try
-			{
-				video = await youtube.Videos.GetAsync(varVideoURL.Text);
-			}
-			catch
-			{
-				video = null;
-			}
-
-			// if video not found 
-			if (video == null)
-			{
-				varStatus.Content = Properties.Resources.NotFound;
-			}
+			// TODO fetch video info
 
 			// say info was found
 			varStatus.Content = Properties.Resources.Found;
 
-			// set the values for preview from url
-			varVidTitle.Text = video.Title;
-			varVidAuthor.Text = video.Author.Title;
-			varVidDuration.Text = video.Duration.ToString();
-
-			// get a list of streams
-			streamManifest = await youtube.Videos.Streams.GetManifestAsync(varVideoURL.Text);
+			// TODO set video info on ui
 
 			// make buttons clickable
 			videoBtn.Click += DownloadVideo;
@@ -140,39 +115,15 @@ namespace GetTube
 
 		async private void DownloadAudio(object sender, RoutedEventArgs e)
 		{
-			// Get audio stream
-			IStreamInfo? streamInfo = streamManifest
-				.GetAudioOnlyStreams()
-				.GetWithHighestBitrate();
+			// TODO download the audio
 
-			// Stop button from working
-			varStatus.Content = Properties.Resources.Downloading;
-			audioBtn.Click -= DownloadAudio;
-
-			string cleanedTitle = Utility.RemoveSpecialCharacters(varVidTitle.Text);
-			string fileAndPath = DownloadsFolder + "\\" + $"{cleanedTitle}.{streamInfo.Container}";
-
-			// Download and notify after
-			await youtube.Videos.Streams.DownloadAsync(streamInfo, fileAndPath);
 			varStatus.Content = Properties.Resources.DownloadedAudio;
 		}
 
 		async private void DownloadVideo(object sender, RoutedEventArgs e)
 		{
-			// Get mixed stream 
-			IStreamInfo? streamInfo = streamManifest
-				.GetMuxedStreams()
-				.GetWithHighestVideoQuality();
+			// TODO download the audio
 
-			// Stop button from working
-			varStatus.Content = Properties.Resources.Downloading;
-			videoBtn.Click -= DownloadVideo;
-
-			string cleanedTitle = Utility.RemoveSpecialCharacters(varVidTitle.Text);
-			string fileAndPath = DownloadsFolder + "\\" + $"{cleanedTitle}.{streamInfo.Container}";
-
-			// Download and notify after
-			await youtube.Videos.Streams.DownloadAsync(streamInfo, fileAndPath);
 			varStatus.Content = Properties.Resources.DownloadedVideo;
 		}
 
