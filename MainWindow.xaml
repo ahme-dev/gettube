@@ -11,7 +11,7 @@
         lex:ResxLocalizationProvider.DefaultDictionary="Resources"
 
         mc:Ignorable="d"
-        Title="GetTube (YouTube Video Downloader)"
+        Title="GetTube (video downloader using youtube-dl)"
         MinHeight="540" MinWidth="480"
         Height="570" Width="480"
         >
