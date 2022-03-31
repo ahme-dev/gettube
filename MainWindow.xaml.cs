@@ -1,27 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WPFLocalizeExtension;
-using WPFLocalizeExtension.Engine;
-using System.Globalization;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using Syroot.Windows.IO;
-using YoutubeDLSharp;
-using YoutubeDLSharp.Options;
+using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Threading;
+using System.Windows;
+using System.Windows.Media;
+using WPFLocalizeExtension.Engine;
+using YoutubeDLSharp;
 using YoutubeDLSharp.Metadata;
+using YoutubeDLSharp.Options;
 
 namespace GetTube;
 
@@ -31,11 +19,11 @@ public partial class MainWindow : Window
 	private string? SelectedLanguage;
 	private readonly string? DownloadsFolder;
 
-	private YoutubeDL ytClient;
+	private YoutubeDL? ytClient;
 	private string? ytUrl;
-	private RunResult<VideoData> ytRes;
+	private RunResult<VideoData>? ytRes;
 	private Progress<DownloadProgress>? ytProg;
-	private CancellationTokenSource ytCancel;
+	private CancellationTokenSource? ytCancel;
 	private bool ytCanCancel;
 
 	public MainWindow()
@@ -56,7 +44,7 @@ public partial class MainWindow : Window
 		SetupDownloader();
 	}
 
-	// setting up the used library for downloading
+	// Setting downloading lib
 
 	private void SetupDownloader()
 	{
@@ -75,8 +63,7 @@ public partial class MainWindow : Window
 		ytProg = new(
 			p => uiStatus.Content =
 			Properties.Resources.Downloading + " " +
-			Utils.FloatToStr(p.Progress)
-			);
+			Utils.FloatToStr(p.Progress));
 	}
 
 	// Configuration management
@@ -158,11 +145,10 @@ public partial class MainWindow : Window
 			ytUrl,
 			AudioConversionFormat.Mp3,
 			progress: ytProg,
-			ct: ytCancel.Token
-			);
+			ct: ytCancel.Token);
 
 		// report finishing
-		if (result.Success) 
+		if (result.Success)
 			uiStatus.Content = Properties.Resources.DownloadedAudio;
 
 		// can't cancel task
@@ -182,14 +168,10 @@ public partial class MainWindow : Window
 		var result = await ytClient.RunVideoDownload(
 			ytUrl,
 			progress: ytProg,
-			ct: ytCancel.Token
-			);
-
-		// able to cancel task
-		ytCanCancel = true;
+			ct: ytCancel.Token);
 
 		// report finishing
-		if (result.Success) 
+		if (result.Success)
 			uiStatus.Content = Properties.Resources.DownloadedVideo;
 
 		// can't cancel task
