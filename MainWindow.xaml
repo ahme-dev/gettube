@@ -12,8 +12,8 @@
 
         mc:Ignorable="d"
         Title="GetTube (video downloader using youtube-dl)"
-        MinHeight="540" MinWidth="480"
         Height="570" Width="480"
+        MinHeight="570" MinWidth="480"
         >
 
     <Grid x:Name="uiContainer" Background="WhiteSmoke">
