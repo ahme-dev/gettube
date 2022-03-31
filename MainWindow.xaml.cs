@@ -144,16 +144,19 @@ namespace GetTube
         async private void DownloadAudio(object sender, RoutedEventArgs e)
         {
             // Get audio stream
-            IStreamInfo? streamInfo = streamManifest.GetAudioOnlyStreams()
+            IStreamInfo? streamInfo = streamManifest
+                .GetAudioOnlyStreams()
                 .GetWithHighestBitrate();
 
             // Stop button from working
             varStatus.Content = Properties.Resources.Downloading;
             audioBtn.Click -= DownloadAudio;
 
+            string cleanedTitle = Utility.RemoveSpecialCharacters(varVidTitle.Text);
+            string fileAndPath = DownloadsFolder+"\\"+$"{cleanedTitle}.{streamInfo.Container}";
+
             // Download and notify after
-            string fileToSave = DownloadsFolder+"\\"+$"{varVidTitle.Text}.{streamInfo.Container}";
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
+            await youtube.Videos.Streams.DownloadAsync(streamInfo, fileAndPath);
             varStatus.Content = Properties.Resources.DownloadedAudio;
         }
 
@@ -168,9 +171,11 @@ namespace GetTube
             varStatus.Content = Properties.Resources.Downloading;
             videoBtn.Click -= DownloadVideo;
 
+            string cleanedTitle = Utility.RemoveSpecialCharacters(varVidTitle.Text);
+            string fileAndPath = DownloadsFolder+"\\"+$"{cleanedTitle}.{streamInfo.Container}";
+
             // Download and notify after
-            string fileToSave = DownloadsFolder+"\\"+$"{varVidTitle.Text}.{streamInfo.Container}";
-			await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
+			await youtube.Videos.Streams.DownloadAsync(streamInfo, fileAndPath);
             varStatus.Content = Properties.Resources.DownloadedVideo;
         }
 
@@ -290,5 +295,20 @@ namespace GetTube
             videoBtn.Click -= DownloadVideo;
             audioBtn.Click -= DownloadAudio;
         }
+
     }
+}
+
+class Utility
+{
+    static public string RemoveSpecialCharacters(string input)
+	{
+        string output = input;
+        var charsToRemove = new string[] { ",", "'", "\"" };
+        foreach (var c in charsToRemove)
+        {
+            output = output.Replace(c, string.Empty);
+        }
+        return output;
+	}
 }
