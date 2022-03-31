@@ -65,7 +65,7 @@
                              Background="WhiteSmoke"
                              FontFamily="Fira Sans"
                              IsUndoEnabled="False"
-                             FontSize="14" BorderThickness="0,0,0,3" BorderBrush="#FFF5A0A0" />
+                             FontSize="14" BorderThickness="0,0,0,3" BorderBrush="#FFD1A0F5" />
 
                     <Button Grid.Column="1"
                             Width="40"
@@ -84,8 +84,8 @@
                 <DockPanel x:Name="uiVidBox" Margin="10,0" Opacity="0.2">
                         <DockPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFA8C5EA"/>
-                                <GradientStop Color="#FFCFE4D2" Offset="1"/>
+                                <GradientStop Color="#FFB196E4"/>
+                                <GradientStop Color="#FFA3D3DC" Offset="1"/>
                             </LinearGradientBrush>
                         </DockPanel.Background>
 
