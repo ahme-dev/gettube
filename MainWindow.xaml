@@ -13,7 +13,7 @@
         mc:Ignorable="d"
         Title="GetTube (YouTube Video Downloader)"
         MinHeight="540" MinWidth="480"
-        Height="550" Width="480"
+        Height="570" Width="480"
         >
 
     <Grid x:Name="container" Background="WhiteSmoke">
@@ -80,16 +80,18 @@
                 <!-- STATUS SECTION -->
                 <Label x:Name="varStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
 
-                <!-- VIDEO SECTION -->
+				<!-- VIDEO SECTION -->
                 <DockPanel x:Name="varVidInfo" Margin="10,0" Opacity="0.2">
-                    <DockPanel Margin="0,5" DockPanel.Dock="Top">
                         <DockPanel.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFD0DDED"/>
+                                <GradientStop Color="#FFA8C5EA"/>
                                 <GradientStop Color="#FFCFE4D2" Offset="1"/>
                             </LinearGradientBrush>
                         </DockPanel.Background>
-                        <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png" Margin="4"/>
+
+                    <DockPanel Margin="5" DockPanel.Dock="Top">
+                        <Image x:Name="varVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png"/>
+
                         <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
                             <TextBlock x:Name="varVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
                             <TextBlock x:Name="varVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
@@ -97,27 +99,34 @@
                         </DockPanel>
                     </DockPanel>
 
-                    <DockPanel Margin="0,5" Height="30" DockPanel.Dock="Bottom">
-                        <DockPanel.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFD0DDED"/>
-                                <GradientStop Color="#FFCFE4D2" Offset="1"/>
-                            </LinearGradientBrush>
-                        </DockPanel.Background>
-
-                        <Button x:Name="audioBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center"
-                                Content="{lex:Loc DownloadAudio}">
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                        </Button>
-                        <Button x:Name="videoBtn" Cursor="Hand" Padding="10,0" FontWeight="Heavy" BorderThickness="0" HorizontalContentAlignment="Center"
-                                Content="{lex:Loc DownloadVideo}">
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                        </Button>
-                    </DockPanel>
+                    <DockPanel Margin="9,3" Height="35" DockPanel.Dock="Top">
+						<Button x:Name="audioBtn"
+								Cursor="Hand"
+								Padding="5,0"
+								FontWeight="Heavy"
+								BorderThickness="0,3,0,0"
+								HorizontalContentAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Content="{lex:Loc DownloadAudio}"
+								Margin="2,2,9,2" >
+							<Button.Background>
+								<SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+							</Button.Background>
+						</Button>
+						<Button x:Name="videoBtn"
+								Cursor="Hand"
+								Padding="5,0"
+								FontWeight="Heavy"
+								BorderThickness="0,3,0,0"
+								HorizontalContentAlignment="Center"
+                                DockPanel.Dock="Right"
+                                Content="{lex:Loc DownloadVideo}"
+								Margin="9,2,2,2" >
+							<Button.Background>
+								<SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+							</Button.Background>
+						</Button>
+					</DockPanel>
                 </DockPanel>
             </VirtualizingStackPanel>
 

@@ -160,7 +160,8 @@ namespace GetTube
         async private void DownloadVideo(object sender, RoutedEventArgs e)
         {
             // Get mixed stream 
-            IStreamInfo? streamInfo = streamManifest.GetMuxedStreams()
+            IStreamInfo? streamInfo = streamManifest
+                .GetMuxedStreams()
                 .GetWithHighestVideoQuality();
 
             // Stop button from working
@@ -169,7 +170,7 @@ namespace GetTube
 
             // Download and notify after
             string fileToSave = DownloadsFolder+"\\"+$"{varVidTitle.Text}.{streamInfo.Container}";
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
+			await youtube.Videos.Streams.DownloadAsync(streamInfo, fileToSave);
             varStatus.Content = Properties.Resources.DownloadedVideo;
         }
 
