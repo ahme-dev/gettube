@@ -35,7 +35,8 @@ public partial class MainWindow : Window
 	private string? ytUrl;
 	private RunResult<VideoData> ytRes;
 	private Progress<DownloadProgress>? ytProg;
-	private CancellationTokenSource ytCts;
+	private CancellationTokenSource ytCancel;
+	private bool ytCanCancel;
 
 	public MainWindow()
 	{
@@ -68,7 +69,7 @@ public partial class MainWindow : Window
 		ytClient.OutputFolder = DownloadsFolder;
 
 		// set cancellation
-		ytCts = new CancellationTokenSource();
+		ytCancel = new CancellationTokenSource();
 
 		// set downloader prog element
 		ytProg = new(
@@ -159,36 +160,53 @@ public partial class MainWindow : Window
 	async private void DownloadAudio(object sender, RoutedEventArgs e)
 	{
 		// cancel previous download
-		//ytCts.Cancel();
+		if (ytCanCancel)
+			ytCancel.Cancel();
+
+		// able to cancel task
+		ytCanCancel = true;
 
 		// download while reporting progress
 		var result = await ytClient.RunAudioDownload(
 			ytUrl,
 			AudioConversionFormat.Mp3,
 			progress: ytProg,
-			ct: ytCts.Token
+			ct: ytCancel.Token
 			);
 
 		// report finishing
 		if (result.Success) 
 			uiStatus.Content = Properties.Resources.DownloadedAudio;
+
+		// can't cancel task
+		ytCanCancel = false;
 	}
 
 	async private void DownloadVideo(object sender, RoutedEventArgs e)
 	{
 		// cancel previous download
-		//ytCts.Cancel();
+		if (ytCanCancel)
+			ytCancel.Cancel();
+
+		// able to cancel task
+		ytCanCancel = true;
 
 		// download while reporting progress
 		var result = await ytClient.RunVideoDownload(
 			ytUrl,
 			progress: ytProg,
-			ct: ytCts.Token
+			ct: ytCancel.Token
 			);
+
+		// able to cancel task
+		ytCanCancel = true;
 
 		// report finishing
 		if (result.Success) 
 			uiStatus.Content = Properties.Resources.DownloadedVideo;
+
+		// can't cancel task
+		ytCanCancel = false;
 	}
 
 	// Language and Color Buttons
