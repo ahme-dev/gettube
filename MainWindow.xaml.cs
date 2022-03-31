@@ -110,19 +110,6 @@ public partial class MainWindow : Window
 		key.Close();
 	}
 
-	// Source and Thanks Buttons
-
-	private void EventFlaticon(object sender, RoutedEventArgs e)
-	{
-		uiSecStatus.Content = Properties.Resources.Flaticon;
-	}
-
-	private void EventSource(object sender, RoutedEventArgs e)
-	{
-		uiSecStatus.Content = Properties.Resources.Github;
-		Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://github.com/ahmadkabdullah/GetTube"}") { CreateNoWindow = true });
-	}
-
 	// Fetching Info And Downloading 
 
 	async private void EventGetVideo(object sender, RoutedEventArgs e)
@@ -209,7 +196,7 @@ public partial class MainWindow : Window
 		ytCanCancel = false;
 	}
 
-	// Language and Color Buttons
+	// Bottom bar events
 
 	private void EventLang(object sender, RoutedEventArgs e)
 	{
@@ -225,6 +212,17 @@ public partial class MainWindow : Window
 			SetUITheme("Light");
 		else
 			SetUITheme("Dark");
+	}
+
+	private void EventFlaticon(object sender, RoutedEventArgs e)
+	{
+		uiSecStatus.Content = Properties.Resources.Flaticon;
+	}
+
+	private void EventSource(object sender, RoutedEventArgs e)
+	{
+		uiSecStatus.Content = Properties.Resources.Github;
+		Process.Start(new ProcessStartInfo("cmd", $"/c start {"https://github.com/ahmadkabdullah/GetTube"}") { CreateNoWindow = true });
 	}
 
 	// Changing the UI
