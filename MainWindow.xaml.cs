@@ -20,8 +20,7 @@ public partial class MainWindow : Window
 	private readonly string? DownloadsFolder;
 
 	private YoutubeDL? ytClient;
-	private string? ytUrl;
-	private RunResult<VideoData>? ytRes;
+	private VideoData ytData;
 	private Progress<DownloadProgress>? ytProg;
 	private CancellationTokenSource? ytCancel;
 	private bool ytCanCancel;
@@ -106,17 +105,17 @@ public partial class MainWindow : Window
 
 		// say fetching and fetch info of new video
 		uiStatus.Content = Properties.Resources.Fetching;
-		ytRes = await ytClient.RunVideoDataFetch(uiURLBox.Text);
+		var currentRes = await ytClient?.RunVideoDataFetch(uiURLBox.Text);
 
 		// check for no info found
-		if (ytRes == null)
+		if (currentRes == null)
 		{
 			uiStatus.Content = Properties.Resources.NotFound;
 			return;
 		}
 
-		// save link
-		ytUrl = uiURLBox.Text;
+		// save fetch result
+		ytData = currentRes.Data;
 
 		// say info was found and set on ui
 		uiStatus.Content = Properties.Resources.Found;
@@ -142,7 +141,7 @@ public partial class MainWindow : Window
 
 		// download while reporting progress
 		var result = await ytClient.RunAudioDownload(
-			ytUrl,
+			ytData.WebpageUrl,
 			AudioConversionFormat.Mp3,
 			progress: ytProg,
 			ct: ytCancel.Token);
@@ -168,7 +167,7 @@ public partial class MainWindow : Window
 
 		// download while reporting progress
 		var result = await ytClient.RunVideoDownload(
-			ytUrl,
+			ytData.WebpageUrl,
 			progress: ytProg,
 			ct: ytCancel.Token);
 
@@ -301,12 +300,12 @@ public partial class MainWindow : Window
 
 	private void ResetUIInfo()
 	{
-		if (ytRes == null)
+		if (ytData == null)
 			return;
 
-		uiVidTitle.Text = ytRes.Data.Title;
-		uiVidAuthor.Text = ytRes.Data.Uploader;
-		uiVidDuration.Text = ytRes.Data.Duration.ToString();
+		uiVidTitle.Text = ytData.Title;
+		uiVidAuthor.Text = ytData.Uploader;
+		uiVidDuration.Text = ytData.Duration.ToString();
 	}
 }
 
