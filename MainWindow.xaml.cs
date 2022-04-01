@@ -80,6 +80,7 @@ public partial class MainWindow : Window
 		SelectedTheme = key.GetValue("Theme").ToString();
 		key.Close();
 	}
+
 	private void CreateConfig()
 	{
 		RegistryKey newKey = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\GetTube", true);
@@ -96,9 +97,9 @@ public partial class MainWindow : Window
 		key.Close();
 	}
 
-	// Fetching Info And Downloading 
+	// Fetching Info And Downloading
 
-	async private void EventGetVideo(object sender, RoutedEventArgs e)
+	private async void EventGetVideo(object sender, RoutedEventArgs e)
 	{
 		// delete the info of the previous video
 		ClearUIInfo();
@@ -130,7 +131,7 @@ public partial class MainWindow : Window
 		uiStatus.Content = Properties.Resources.WaitingFormat;
 	}
 
-	async private void DownloadAudio(object sender, RoutedEventArgs e)
+	private async void DownloadAudio(object sender, RoutedEventArgs e)
 	{
 		// cancel previous download
 		if (ytCanCancel)
@@ -156,7 +157,7 @@ public partial class MainWindow : Window
 		ytCanCancel = false;
 	}
 
-	async private void DownloadVideo(object sender, RoutedEventArgs e)
+	private async void DownloadVideo(object sender, RoutedEventArgs e)
 	{
 		// cancel previous download
 		if (ytCanCancel)
@@ -257,7 +258,6 @@ public partial class MainWindow : Window
 
 		if (theme == "Light")
 		{
-
 			// light theme colors
 			bgCol = Brushes.WhiteSmoke;
 			fgCol = new SolidColorBrush(Color.FromArgb(0xFF, 20, 20, 20));
@@ -310,7 +310,7 @@ public partial class MainWindow : Window
 	}
 }
 
-class Utils
+internal class Utils
 {
 	public static string RemoveSpecialCharacters(string input)
 	{
