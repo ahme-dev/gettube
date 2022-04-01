@@ -144,6 +144,12 @@
   <data name="Github" xml:space="preserve">
     <value>کۆدەکە هەر نەبینی باشترە</value>
   </data>
+  <data name="NotDownloadedAudio" xml:space="preserve">
+    <value>❌ دەنگەکە داونلۆد نەکرا</value>
+  </data>
+  <data name="NotDownloadedVideo" xml:space="preserve">
+    <value>❌ ڤیدیۆکە داونلۆد نەکرا</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>❌ زانیاری ڤیدیۆکە نەدۆزرایەوە</value>
   </data>

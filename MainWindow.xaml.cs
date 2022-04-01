@@ -150,6 +150,8 @@ public partial class MainWindow : Window
 		// report finishing
 		if (result.Success)
 			uiStatus.Content = Properties.Resources.DownloadedAudio;
+		else
+			uiStatus.Content = Properties.Resources.NotDownloadedAudio;
 
 		// can't cancel task
 		ytCanCancel = false;
@@ -173,6 +175,8 @@ public partial class MainWindow : Window
 		// report finishing
 		if (result.Success)
 			uiStatus.Content = Properties.Resources.DownloadedVideo;
+		else
+			uiStatus.Content = Properties.Resources.NotDownloadedVideo;
 
 		// can't cancel task
 		ytCanCancel = false;

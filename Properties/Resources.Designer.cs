@@ -142,6 +142,24 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ❌ Failed to download audio!.
+        /// </summary>
+        internal static string NotDownloadedAudio {
+            get {
+                return ResourceManager.GetString("NotDownloadedAudio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ❌ Failed to download video!.
+        /// </summary>
+        internal static string NotDownloadedVideo {
+            get {
+                return ResourceManager.GetString("NotDownloadedVideo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ❌ Could not find video info!.
         /// </summary>
         internal static string NotFound {

@@ -144,6 +144,12 @@
   <data name="Github" xml:space="preserve">
     <value>you're checking the source code. oh no!</value>
   </data>
+  <data name="NotDownloadedAudio" xml:space="preserve">
+    <value>❌ Failed to download audio!</value>
+  </data>
+  <data name="NotDownloadedVideo" xml:space="preserve">
+    <value>❌ Failed to download video!</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>❌ Could not find video info!</value>
   </data>
