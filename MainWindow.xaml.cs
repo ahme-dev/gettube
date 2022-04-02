@@ -3,6 +3,7 @@ using Syroot.Windows.IO;
 using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
@@ -51,8 +52,8 @@ public partial class MainWindow : Window
 		ytClient = new();
 
 		// set downloader paths
-		ytClient.YoutubeDLPath = DownloadsFolder + "\\" + "youtube-dl.exe";
-		ytClient.FFmpegPath = DownloadsFolder + "\\" + "ffmpeg.exe";
+		ytClient.YoutubeDLPath = Path.Join(DownloadsFolder, "youtube-dl.exe");
+		ytClient.FFmpegPath = Path.Join(DownloadsFolder, "ffmpeg.exe");
 		ytClient.OutputFolder = DownloadsFolder;
 
 		// set cancellation
