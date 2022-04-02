@@ -216,9 +216,6 @@ public partial class MainWindow : Window
 
 	private void SetUILang(string language)
 	{
-		// switch to set language
-		LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
-
 		// change fonts and notify in secondary status
 		if (language == "ar-IQ")
 		{
@@ -230,7 +227,6 @@ public partial class MainWindow : Window
 				uiSecStatus.FontFamily =
 				uiStatus.FontFamily = new FontFamily("NRT BOLD");
 			SelectedLanguage = "ar-IQ";
-			uiSecStatus.Content = Properties.Resources.ToEnglish;
 		}
 		else
 		{
@@ -242,8 +238,13 @@ public partial class MainWindow : Window
 				uiSecStatus.FontFamily =
 				uiStatus.FontFamily = new FontFamily("Fira Sans");
 			SelectedLanguage = "en-US";
-			uiSecStatus.Content = Properties.Resources.ToKurdish;
 		}
+
+		// switch to set language
+		LocalizeDictionary.Instance.Culture = new CultureInfo(SelectedLanguage);
+
+		// say language was changed
+		uiSecStatus.Content = Properties.Resources.ChangedLanguage;
 
 		// update configuration
 		UpdateConfig();

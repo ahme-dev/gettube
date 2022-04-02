@@ -61,6 +61,15 @@ namespace GetTube.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to the language was changed.
+        /// </summary>
+        internal static string ChangedLanguage {
+            get {
+                return ResourceManager.GetString("ChangedLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download Audio .
         /// </summary>
         internal static string DownloadAudio {
@@ -174,24 +183,6 @@ namespace GetTube.Properties {
         internal static string ToDark {
             get {
                 return ResourceManager.GetString("ToDark", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to displaying in plain english!.
-        /// </summary>
-        internal static string ToEnglish {
-            get {
-                return ResourceManager.GetString("ToEnglish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to hello to the kurdish-speaking one!.
-        /// </summary>
-        internal static string ToKurdish {
-            get {
-                return ResourceManager.GetString("ToKurdish", resourceCulture);
             }
         }
         

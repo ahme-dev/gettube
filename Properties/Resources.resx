@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ChangedLanguage" xml:space="preserve">
+    <value>the language was changed</value>
+  </data>
   <data name="DownloadAudio" xml:space="preserve">
     <value>Download Audio </value>
   </data>
@@ -155,12 +158,6 @@
   </data>
   <data name="ToDark" xml:space="preserve">
     <value>it is getting dark out here!</value>
-  </data>
-  <data name="ToEnglish" xml:space="preserve">
-    <value>displaying in plain english!</value>
-  </data>
-  <data name="ToKurdish" xml:space="preserve">
-    <value>hello to the kurdish-speaking one!</value>
   </data>
   <data name="ToLight" xml:space="preserve">
     <value>it is bright again!</value>
