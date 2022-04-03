@@ -10,4 +10,4 @@ An application for downloading videos from youtube, facebook, and whatever else 
 
 ***A Preview of the UI:***
 
-![A look at GetTube](GetTube.gif)
+![A look at GetTube](GetTubeShow.gif)
