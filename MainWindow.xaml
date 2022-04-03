@@ -83,8 +83,8 @@
 				<DockPanel x:Name="uiVidBox" Margin="10,0" Opacity="0.2">
 					<DockPanel.Background>
 						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-							<GradientStop Color="#FFB196E4" />
-							<GradientStop Color="#FFA3D3DC" Offset="1" />
+							<GradientStop Color="#FFA683E8" />
+							<GradientStop Color="#FF99B8DA" Offset="0.813" />
 						</LinearGradientBrush>
 					</DockPanel.Background>
 
@@ -107,7 +107,7 @@
 								HorizontalContentAlignment="Center"
                                 DockPanel.Dock="Left"
                                 Content="{lex:Loc DownloadAudio}"
-								Margin="2,2,9,2">
+								Margin="2,2,9,2" BorderBrush="#FF212121">
 							<Button.Background>
 								<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
 							</Button.Background>
@@ -120,7 +120,7 @@
 								HorizontalContentAlignment="Center"
                                 DockPanel.Dock="Right"
                                 Content="{lex:Loc DownloadVideo}"
-								Margin="9,2,2,2">
+								Margin="9,2,2,2" BorderBrush="#FF212121">
 							<Button.Background>
 								<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
 							</Button.Background>
