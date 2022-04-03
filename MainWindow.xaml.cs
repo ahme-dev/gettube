@@ -68,7 +68,7 @@ public partial class MainWindow : Window
 		ytProg = new(
 			p => uiStatus.Content =
 			Properties.Resources.Downloading + " " +
-			Utils.FloatToStr(p.Progress));
+			Utils.FloatToHundred(p.Progress));
 	}
 
 	// Configuration management
@@ -331,13 +331,13 @@ internal class Utils
 		return output;
 	}
 
-	public static string FloatToStr(float num)
+	public static string FloatToHundred(float num)
 	{
 		var str = string.Format("{0:N5}", num);
 		if (str.Length <= 1)
 			return str;
 		else
-			return str[0].ToString() + str[2].ToString() + str[3].ToString();
+			return String.Format("{0}{1}{2}", str[0], str[2], str[3]);
 	}
 
 	public static string SecToTime(float? secondsFloat)
