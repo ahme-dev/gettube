@@ -110,7 +110,7 @@ public partial class MainWindow : Window
 		var currentRes = await ytClient?.RunVideoDataFetch(uiURLBox.Text);
 
 		// check for no info found
-		if (currentRes == null)
+		if (!currentRes.Success)
 		{
 			uiStatus.Content = Properties.Resources.NotFound;
 			return;

@@ -13,50 +13,49 @@
         mc:Ignorable="d"
         Title="GetTube (video downloader using youtube-dl)"
         Height="570" Width="480"
-        MinHeight="570" MinWidth="480"
-        >
+        MinHeight="570" MinWidth="480">
 
-    <Grid x:Name="uiContainer" Background="WhiteSmoke">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="45"></RowDefinition>
-        </Grid.RowDefinitions>
+	<Grid x:Name="uiContainer" Background="WhiteSmoke">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"></RowDefinition>
+			<RowDefinition Height="*"></RowDefinition>
+			<RowDefinition Height="45"></RowDefinition>
+		</Grid.RowDefinitions>
 
-        <!-- HEADER -->
-        <Grid Grid.Row="0" Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="70"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+		<!-- HEADER -->
+		<Grid Grid.Row="0" Margin="8">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="70"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="70"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
 
-            <Image HorizontalAlignment="Center"
+			<Image HorizontalAlignment="Center"
                    Height="120"
                    Grid.Column="1"
                    Margin="0,25,0,0"
-                   Source="/GetTube.png"/>
+                   Source="/GetTube.png" />
 
-            <Label FontSize="16" Foreground="Gray" Content="vGit"/>
-        </Grid>
+			<Label FontSize="16" Foreground="Gray" Content="vGit" />
+		</Grid>
 
-        <!-- CONTENT -->
-        <Grid Grid.Row="1" 
+		<!-- CONTENT -->
+		<Grid Grid.Row="1"
               Margin="30,0"
               VerticalAlignment="Center"
               MaxWidth="600">
 
-            <VirtualizingStackPanel>
+			<VirtualizingStackPanel>
 
-                <!-- TEXTBOX SECTION -->
+				<!-- TEXTBOX SECTION -->
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"></ColumnDefinition>
+						<ColumnDefinition Width="Auto"></ColumnDefinition>
+					</Grid.ColumnDefinitions>
 
-                    <TextBox Grid.Column="0"
+					<TextBox Grid.Column="0"
                              x:Name="uiURLBox"
                              VerticalContentAlignment="Center"
                              HorizontalContentAlignment="Center"
@@ -65,41 +64,41 @@
                              Background="WhiteSmoke"
                              FontFamily="Fira Sans"
                              IsUndoEnabled="False"
-                             FontSize="14" BorderThickness="0,0,0,3" BorderBrush="#FFD1A0F5" />
+                             FontSize="14" BorderThickness="0,0,0,3" BorderBrush="#FF6662F1" />
 
-                    <Button Grid.Column="1"
+					<Button Grid.Column="1"
                             Width="40"
                             Cursor="Hand"
                             Margin="2,0"
                             Click="EventGetVideo"
                             Padding="5" Background="#00DDDDDD" BorderThickness="0,0,0,0">
-                        <Image Source="/Fetch.png"/>
-                    </Button>
-                </Grid>
+						<Image Source="/Fetch.png" />
+					</Button>
+				</Grid>
 
-                <!-- STATUS SECTION -->
-                <Label x:Name="uiStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
+				<!-- STATUS SECTION -->
+				<Label x:Name="uiStatus" FontSize="14" FontFamily="Fira Sans" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,30" Content="{lex:Loc WaitingURL}" />
 
 				<!-- VIDEO SECTION -->
-                <DockPanel x:Name="uiVidBox" Margin="10,0" Opacity="0.2">
-                        <DockPanel.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FFB196E4"/>
-                                <GradientStop Color="#FFA3D3DC" Offset="1"/>
-                            </LinearGradientBrush>
-                        </DockPanel.Background>
+				<DockPanel x:Name="uiVidBox" Margin="10,0" Opacity="0.2">
+					<DockPanel.Background>
+						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+							<GradientStop Color="#FFB196E4" />
+							<GradientStop Color="#FFA3D3DC" Offset="1" />
+						</LinearGradientBrush>
+					</DockPanel.Background>
 
-                    <DockPanel Margin="5" DockPanel.Dock="Top">
-                        <Image x:Name="uiVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png"/>
+					<DockPanel Margin="5" DockPanel.Dock="Top">
+						<Image x:Name="uiVidThumbnail" Width="70" DockPanel.Dock="Left" Source="/Thumbnail.png" />
 
-                        <DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
-                            <TextBlock x:Name="uiVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="uiVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap"/>
-                            <TextBlock x:Name="uiVidDuration" DockPanel.Dock="Right" Text="{lex:Loc VidDuration}" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0"/>
-                        </DockPanel>
-                    </DockPanel>
+						<DockPanel VerticalAlignment="Center" Margin="5,0" DockPanel.Dock="Right">
+							<TextBlock x:Name="uiVidTitle" DockPanel.Dock="Top" FontWeight="Bold" FontSize="16" Text="{lex:Loc VidTitle}" TextWrapping="Wrap" />
+							<TextBlock x:Name="uiVidAuthor" DockPanel.Dock="Left" Text="{lex:Loc VidAuthor}" TextWrapping="Wrap" />
+							<TextBlock x:Name="uiVidDuration" DockPanel.Dock="Right" Text="{lex:Loc VidDuration}" HorizontalAlignment="Right" TextWrapping="Wrap" Margin="0,0,5,0" />
+						</DockPanel>
+					</DockPanel>
 
-                    <DockPanel Margin="9,3" Height="35" DockPanel.Dock="Top">
+					<DockPanel Margin="9,3" Height="35" DockPanel.Dock="Top">
 						<Button x:Name="uiAudioBtn"
 								Cursor="Hand"
 								Padding="5,0"
@@ -108,9 +107,9 @@
 								HorizontalContentAlignment="Center"
                                 DockPanel.Dock="Left"
                                 Content="{lex:Loc DownloadAudio}"
-								Margin="2,2,9,2" >
+								Margin="2,2,9,2">
 							<Button.Background>
-								<SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+								<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
 							</Button.Background>
 						</Button>
 						<Button x:Name="uiVideoBtn"
@@ -121,77 +120,72 @@
 								HorizontalContentAlignment="Center"
                                 DockPanel.Dock="Right"
                                 Content="{lex:Loc DownloadVideo}"
-								Margin="9,2,2,2" >
+								Margin="9,2,2,2">
 							<Button.Background>
-								<SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+								<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
 							</Button.Background>
 						</Button>
 					</DockPanel>
-                </DockPanel>
-            </VirtualizingStackPanel>
+				</DockPanel>
+			</VirtualizingStackPanel>
+		</Grid>
 
-        </Grid>
+		<!-- FOOTER -->
+		<Grid Grid.Row="2" Margin="8">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+				<ColumnDefinition Width="Auto"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
 
-        <!-- FOOTER -->
-        <Grid Grid.Row="2" Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Button Cursor="Hand" Grid.Column="0" BorderThickness="0" Click="EventColor">
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-                <Image Margin="5,1"
+			<Button Cursor="Hand" Grid.Column="0" BorderThickness="0" Click="EventColor">
+				<Button.Background>
+					<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
+				</Button.Background>
+				<Image Margin="5,1"
                        Source="/Theme.png" Stretch="Fill"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       />
-            </Button>
+                       VerticalAlignment="Center" />
+			</Button>
 
-            <Button Cursor="Hand" Grid.Column="1" BorderThickness="0" Click="EventLang">
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-                <Image Margin="5,1"
+			<Button Cursor="Hand" Grid.Column="1" BorderThickness="0" Click="EventLang">
+				<Button.Background>
+					<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
+				</Button.Background>
+				<Image Margin="5,1"
                        Source="/Language.png" Stretch="Fill"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       />
-            </Button>
+                       VerticalAlignment="Center" />
+			</Button>
 
-            <Label Grid.Column="2" x:Name="uiSecStatus"
+			<Label Grid.Column="2" x:Name="uiSecStatus"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Foreground="Gray" />
 
-            <Button Cursor="Hand" Grid.Column="3"
+			<Button Cursor="Hand" Grid.Column="3"
                     Click="EventFlaticon"
                     BorderThickness="0">
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-                <Image Margin="5"
+				<Button.Background>
+					<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
+				</Button.Background>
+				<Image Margin="5"
                        Source="/Flaticon.png" Stretch="Fill"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       />
-            </Button>
+                       VerticalAlignment="Center" />
+			</Button>
 
-            <Button Cursor="Hand" Grid.Column="4" Click="EventSource" BorderThickness="0">
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-                <Image Margin="5,1"
+			<Button Cursor="Hand" Grid.Column="4" Click="EventSource" BorderThickness="0">
+				<Button.Background>
+					<SolidColorBrush Color="#FFDDDDDD" Opacity="0" />
+				</Button.Background>
+				<Image Margin="5,1"
                        Source="/Source.png" Stretch="Fill"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       />
-            </Button>
-        </Grid>
-    </Grid>
+                       VerticalAlignment="Center" />
+			</Button>
+		</Grid>
+	</Grid>
 </Window>
