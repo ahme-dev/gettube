@@ -315,7 +315,7 @@ public partial class MainWindow : Window
 
 		uiVidTitle.Text = ytData.Title;
 		uiVidAuthor.Text = ytData.Uploader;
-		uiVidDuration.Text = ytData.Duration.ToString();
+		uiVidDuration.Text = Utils.SecToTime(ytData.Duration);
 	}
 }
 
@@ -338,5 +338,20 @@ internal class Utils
 			return str;
 		else
 			return str[0].ToString() + str[2].ToString() + str[3].ToString();
+	}
+
+	public static string SecToTime(float? secondsFloat)
+	{
+		if (secondsFloat == null)
+			return "0";
+
+		var seconds = (int)secondsFloat;
+		var minutes = seconds / 60;
+		var pOne = seconds % 60;
+		var hours = minutes / 60;
+		var pTwo = minutes % 60;
+		var pThree = hours;
+
+		return String.Format("{0}:{1}:{2}", pThree, pTwo, pOne);
 	}
 }
