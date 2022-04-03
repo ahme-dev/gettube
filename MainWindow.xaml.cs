@@ -22,6 +22,7 @@ public partial class MainWindow : Window
 
 	private YoutubeDL? ytClient;
 	private VideoData ytData;
+	private OptionSet ytOpts;
 	private Progress<DownloadProgress>? ytProg;
 	private CancellationTokenSource? ytCancel;
 	private bool ytCanCancel;
@@ -58,6 +59,10 @@ public partial class MainWindow : Window
 
 		// set cancellation
 		ytCancel = new CancellationTokenSource();
+
+		// initialize options
+		ytOpts = new OptionSet();
+		//ytOpts.EmbedThumbnail = true;
 
 		// set downloader prog element
 		ytProg = new(
@@ -146,6 +151,7 @@ public partial class MainWindow : Window
 			ytData.WebpageUrl,
 			AudioConversionFormat.Mp3,
 			progress: ytProg,
+			overrideOptions: ytOpts,
 			ct: ytCancel.Token);
 
 		// report finishing
@@ -171,6 +177,7 @@ public partial class MainWindow : Window
 		var result = await ytClient.RunVideoDownload(
 			ytData.WebpageUrl,
 			progress: ytProg,
+			overrideOptions: ytOpts,
 			ct: ytCancel.Token);
 
 		// report finishing
