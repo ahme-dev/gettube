@@ -53,8 +53,8 @@ public partial class MainWindow : Window
 		ytClient = new();
 
 		// set downloader paths
-		ytClient.YoutubeDLPath = Path.Join(DownloadsFolder, "youtube-dl.exe");
-		ytClient.FFmpegPath = Path.Join(DownloadsFolder, "ffmpeg.exe");
+		ytClient.YoutubeDLPath = Path.Join("youtube-dl.exe");
+		ytClient.FFmpegPath = Path.Join("ffmpeg.exe");
 		ytClient.OutputFolder = DownloadsFolder;
 
 		// set cancellation
