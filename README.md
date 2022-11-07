@@ -1,5 +1,5 @@
-![Github Release](https://img.shields.io/github/v/release/ahmadkabdullah/GetTube?include_prereleases&label=Current%20Release&style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/ahmadkabdullah/GetTube?style=for-the-badge)
+![Github Release](https://img.shields.io/github/v/release/ahmedkapro/GetTube?include_prereleases&label=Current%20Release&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/ahmedkapro/GetTube?style=for-the-badge)
 
 # GetTube
 
@@ -7,7 +7,7 @@ An application for downloading videos from youtube, facebook, and whatever else 
 
 ## Install
 
-Just grab a binary from the [releases](https://github.com/ahmedkabd/gettube/releases/) page.
+Just grab a binary from the [releases](https://github.com/ahmedkapro/gettube/releases/) page.
 
 <br>
 
